@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--<html manifest="/cache.manifest">-->
 <head>
     <title>Monkeypuzzle</title>
@@ -91,7 +91,7 @@
 
         <div class="visualisation-pane">
             <div id="navbar">
-                <button class="btn-hamburger toggle-button"><a >
+                <button class="btn-hamburger toggle-button">
                     <i class="fa fa-bars fa-fw fa-lg" style="color: #cbc5c1;"></i>
                 </button>
             </div>
@@ -117,7 +117,7 @@
                  <div class="form-group">
                     <textarea class="form-control" rows="2" id="new_atom_content"></textarea>
                  </div>
-            </div>
+                </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="new_atom_modal()">Create</button>
@@ -284,6 +284,7 @@
                 <p>Select a resource type</p>
                 <select class="form-control" id="resource_type">
                     <option>Text</option>
+                    <option>Website</option>
                 </select>
             </div>
             <div class="modal-footer">
@@ -371,6 +372,7 @@
     <script src="js/modal_dialogs.js"></script>
     <script src="js/resourcepane.js"></script>
     <script src="js/resourcepane_text.js"></script>
+    <script src="js/resourcepane_website.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/keyboard.js"></script>
 	<script src="js/filemanager.js"></script>
