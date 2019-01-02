@@ -15,6 +15,9 @@ function add_tab(load_id=null) {
 
     var resource_type_idx = document.getElementById("resource_type").options.selectedIndex;
     var resource_type_txt = document.getElementById("resource_type").options[resource_type_idx].text;
+    var resource_type_web =
+    document.getElementById("resource_type").options[resource_type_idx].text;
+    if (resource_type_web.toLowerCase() === "web") { add_web_resource_body(tab_id); }
     if (resource_type_txt.toLowerCase() === "text") { add_text_resource_body(tab_id); }
 
     set_active_tab(tab_id+"_body");
