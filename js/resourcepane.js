@@ -79,23 +79,41 @@ function remove_tab() {
 
 function web_search() {
     var web_address = document.getElementById("webAddress_" + tab_id).value;
+    var warning_label = document.getElementById("warning_label").innerHTML;
+    //Sort this later
+    var address_type = [".com",".co.uk",".net",".org"];
 
-    if (web_address.includes("http://") || web_address.includes("https://") || (web_address.includes("www."))) {
+    if (web_address.includes(".com")) {
         add_to_history(web_address);
+        document.getElementById("warning_label").innerHTML = "";
     } else {
-        console.log("This is not a valid web address");
+        document.getElementById("warning_label").innerHTML = "This is not a valid web address";
     }
 }
 
+
+
 function add_to_history(web_address) {
     web_history.unshift(web_address);
+    var ul = document.createElement('ul');
 
     if (web_history.length > 10) {
         web_history.splice(10, 1);
     }
-
-    console.log(web_history);
+    
+ document.getElementById('history_list').appendChild(ul);
+        
+    web_history.forEach(function (item) {
+        var li = document.createElement('li');
+        ul.appendChild(li);
+        
+        li.innerHTML += item;
+            console.log(item);
+    });
+    
 }
+
+
 
 
 function remove_all_tabs() {

@@ -23,20 +23,17 @@ function add_web_resource_body(tab_id) {
                                 </i>
                             </button>
                             <div class="dropdown-menu">
-<a class="dropdown-item" href="#">Action<br></a>
-      <a class="dropdown-item" href="#">Another action<br></a>
-      <a class="dropdown-item" href="#">Something else here<br></a>
+<div id="history_list" class="container-fluid">
                             </div>
                         </div>
                     </div>
                 
                     <div class="form-group">
-                    <label>Website Address</label>
-
-                    <textarea id="webAddress_` + tab_id + `" type="text" rows="1" style="resize: none;" class="form-control" placeholder="Paste content web address..." onchange="change_title('` + tab_id + `')"></textarea> 
+                    <label>Website Address</label>                    
+                    <label id="warning_label" class="text-danger"></label>
+                    <textarea id="webAddress_` + tab_id + `" type="text" rows="1" style="resize: none;" class="form-control" placeholder="Web address of this resource..." onchange="change_title('` + tab_id + `')"></textarea>   
                     <label>Content</label>
-
-		<iframe id='test_iframe' class="form-control" src='https://crossorigin.me' style="resize: vertical; min-height:50vh;"></iframe>
+		          <iframe id='test_iframe' class="form-control" src='https://crossorigin.me' style="resize: vertical; min-height:50vh;"></iframe>
 
                 </div>
                 <div type="button" class="btn btn-default">Refresh</div>
