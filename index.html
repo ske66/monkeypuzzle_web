@@ -12,6 +12,76 @@
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="css/monkeypuzzle.css" type="text/css" />
     <link rel="stylesheet" href="css/brands.min.css" type="text/css"/>
+    
+    
+    
+    
+    
+    <script type="text/javascript">
+    
+    
+    var developerKey = "AIzaSyAVJdEON-ZKdI3NFvNg98B9HcFf8SCVdW8";
+    var clientId = "901403089982-stdnflked3taoujvol9ti9svsok14er4.apps.googleusercontent.com";
+    var scope = "https://www.googleapis.com/auth/photos";  //change this
+         var pickerApiLoaded = false;
+      var oauthToken;
+
+      // Use the API Loader script to load google.picker and gapi.auth.
+      function onApiLoad() {
+        gapi.load('auth2', onAuthApiLoad);
+        gapi.load('picker', onPickerApiLoad);
+      }
+
+      function onAuthApiLoad() {
+        var authBtn = document.getElementById('auth');
+        authBtn.disabled = false;
+        authBtn.addEventListener('click', function() {
+          gapi.auth2.authorize({
+            client_id: clientId,
+            scope: scope
+          }, handleAuthResult);
+        });
+      }
+
+      function onPickerApiLoad() {
+        pickerApiLoaded = true;
+        createPicker();
+      }
+
+      function handleAuthResult(authResult) {
+        if (authResult && !authResult.error) {
+          oauthToken = authResult.access_token;
+          createPicker();
+        }
+      }
+
+      // Create and render a Picker object for picking user Photos.
+      function createPicker() {
+        if (pickerApiLoaded && oauthToken) {
+          var picker = new google.picker.PickerBuilder().
+              addView(google.picker.ViewId.PHOTOS).
+              setOAuthToken(oauthToken).
+              setDeveloperKey(developerKey).
+              setCallback(pickerCallback).
+              build();
+          picker.setVisible(true);
+        }
+      }
+
+      // A simple callback implementation.
+      function pickerCallback(data) {
+        var url = 'nothing';
+        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+          var doc = data[google.picker.Response.DOCUMENTS][0];
+          url = doc[google.picker.Document.URL];
+        }
+        var message = 'You picked: ' + url;
+        document.getElementById('result').innerHTML = message;
+      }  
+    </script>
+    
+    
+    
 </head>
 
 <body>
@@ -50,6 +120,10 @@
                 <li><a href="#" id="drive_button"><button class="btn btn-primary" onclick="open_drive()" title="Save current project to Google Drive">Google Drive<i class="fa fa-google-drive" style="margin-left: 5px"></i></button></a></li>
                 <li><a href="#" id="export_button"><button class="btn btn-default" onclick="download_sadface()" title="Export the current analysis to a SADFace formatted JSON document">SADFace</button></a></li>
                 <li><a href="#" target="_blank" id="download_png"><button class="btn btn-default" title="Export the current analysis to a PNG image" onclick="download_png()">PNG</button></a></li>
+                <li>            <button type="button" id="auth" disabled>Authenticate</button>
+
+                    <!-- this needs to be imporved -->
+    <div id="result"></div></li>
                 <li><a href="#" target="_blank" id="download_jpg"><button class="btn btn-default" title="Export the current analysis to a JPG image" onclick="download_jpg()">JPG</button></a></li>
             </ul>
 
