@@ -101,7 +101,14 @@ function add_to_history(web_address) {
         web_history.splice(10, 1);
     }
     
- document.getElementById('history_list').appendChild(ul);
+ var list = document.getElementById('history_list')
+    
+    while(list.firstChild)
+        {
+            list.removeChild(list.firstChild)
+        }
+
+    list.append(ul);
         
     web_history.forEach(function (item) {
         var li = document.createElement('li');
