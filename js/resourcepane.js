@@ -79,15 +79,16 @@ function remove_tab() {
 
 function web_search() {
     var web_address = document.getElementById("webAddress_" + tab_id).value;
-    var warning_label = document.getElementById("warning_label").innerHTML;
+    var warning_label = document.getElementById("warning_label_" + tab_id).innerHTML;
+    
     //Sort this later
     var address_type = [".com",".co.uk",".net",".org"];
 
     if (web_address.includes(".com")) {
         add_to_history(web_address);
-        document.getElementById("warning_label").innerHTML = "";
+        document.getElementById("warning_label_" + tab_id).innerHTML = "";
     } else {
-        document.getElementById("warning_label").innerHTML = "This is not a valid web address";
+        document.getElementById("warning_label_" + tab_id).innerHTML = "This is not a valid web address";
     }
 }
 
@@ -95,13 +96,13 @@ function web_search() {
 
 function add_to_history(web_address) {
     web_history.unshift(web_address);
-    var ul = document.createElement('ul');
+    var ul = document.createElement('ul_' + tab_id);
 
     if (web_history.length > 10) {
         web_history.splice(10, 1);
     }
     
- var list = document.getElementById('history_list')
+ var list = document.getElementById("history_list_" + tab_id)
     
     while(list.firstChild)
         {
@@ -111,7 +112,7 @@ function add_to_history(web_address) {
     list.append(ul);
         
     web_history.forEach(function (item) {
-        var li = document.createElement('li');
+        var li = document.createElement('li_' + tab_id);
         ul.appendChild(li);
         
         li.innerHTML += item;
