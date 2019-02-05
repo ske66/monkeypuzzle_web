@@ -78,18 +78,33 @@ function remove_tab() {
 }
 
 function web_search() {
-    var web_address = document.getElementById("webAddress_" + tab_id).value;
-    var warning_label = document.getElementById("warning_label_" + tab_id).innerHTML;
-    
-    //Sort this later
-    var address_type = [".com",".co.uk",".net",".org"];
-
-    if (web_address.includes(".com")) {
+    var web_address = document.getElementById("webAddress_" + tab_id +).value;
+    var warning_label = document.getElementById("warning_label_" + tab_id +).innerHTML;
+	var proxyIframe = document.getElementById("test_iframe_" + tab_id +);
+	    
+	
+    if (web_address.contains(".co.uk")) {
         add_to_history(web_address);
-        document.getElementById("warning_label_" + tab_id).innerHTML = "";
+        document.getElementById("warning_label_" + tab_id").innerHTML = "";
+		
+		//run python script with web_address as a paramater
+		//run Proxy(web_address)
+		//return srcdoc
+		//proxyIframe.src = srcdoc
+	
     } else {
         document.getElementById("warning_label_" + tab_id).innerHTML = "This is not a valid web address";
-    }
+    }		
+}
+
+
+function refresh(){
+	var newURL = document.getElementById('website_url').value;
+	var showSite = document.getElementsByName('proxy_window')[0];
+	showSite.src = newURL;
+	
+	document.getElementById("results").innerHTML = newURL;
+	//http://siwells.github.io/teaching_set09103/
 }
 
 

@@ -36,6 +36,7 @@ function add_web_resource_body(tab_id) {
 		          <iframe id="test_iframe_` + tab_id + `" class="form-control" src='changethisurl' style="resize: vertical; min-height:50vh;"></iframe>
 
                 </div>
+				<div>TEST</div>
                 <div type="button" class="btn btn-default">Refresh</div>
 <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
             </form>
@@ -64,5 +65,3 @@ function change_textarea(tab_id) {
     var text = document.getElementById(tab_id).value;
     set_text_resource_content(tab_id, text)
 }
-
-//test
