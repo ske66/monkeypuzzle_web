@@ -6,10 +6,15 @@ import BaseHTTPServer
 import time
 import sys
 import requests
+import socket
 
 
-HOST_NAME = '10.0.75.1' # !!!REMEMBER TO CHANGE THIS!!!
-PORT_NUMBER = 8899 # Maybe set this to 9000.
+#URL = 'https://google.com' #TAKE USER INPUT
+URL='https://siwells.github.io/set08101'
+IP_ADDRESS = socket.gethostbyname(socket.gethostname())
+HOST_NAME = IP_ADDRESS
+PORT_NUMBER = 9000
+HTML_LIST = ['/index', '/home', '/default']
 REDIRECTIONS = {"/slashdot/": "http://slashdot.org/",
                 "/freshmeat/": "http://freshmeat.net/"}
 LAST_RESORT = "http://google.com/"
@@ -19,49 +24,54 @@ class RedirectHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.send_response(301)
         s.send_header("Location", REDIRECTIONS.get(s.path, LAST_RESORT))
         s.end_headers()
-        
+
     def do_GET(s):
-        print("s: "+s.path)
-        if (s.path == "/index.html"):
+        r = requests.get(URL)
+        print(r.text)
+        if s.path in HTML_LIST:
             s.serve_web()
+            print "HTML GOT"
         else:
-            print("s: "+s.path)
-            #//is.do_HEAD()
-            r = requests.get('https://www.reddit.com')
+            print "s:" + s.path
             s.send_response(200)
             s.send_header("Content-type", "text/html")
             s.end_headers()
             s.wfile.write(str(r.content))
-    
+
     def get_page(s):
-        r = requests.get('http://www.reddit.com')
+        r = requests.get(URL)
         page = s.escape(r.content)
         return str(page)
 
     def serve_web(s):
         s.send_response(200)
+        print "Writing html"
         s.send_header("Content-type", "text/html")
         s.end_headers()
-        s.wfile.write("<html><head><title>Proxy Testing.</title></head>")
-        # If someone went to "http://something.somewhere.net/foo/bar/",
-        # then s.path equals "/foo/bar/".
-        s.wfile.write("<p>You accessed this path: %s</p>" % s.path)
-        s.wfile.write("<iframe id='test_iframe' height='600' width='1000' srcdoc='"+s.get_page()+"'></iframe>")
-        s.wfile.write("<button type='button' onclick='getSelectionText()'>textify</button>")
-        s.wfile.write("<script>function getSelectionText() { var iframe= document.getElementById('test_iframe'); var idoc= iframe.contentDocument || iframe.contentWindow.document; var iwin= iframe.contentWindow || iframe.contentDocument.defaultView; console.log(''+iwin.getSelection() ) } </script>")
-        s.wfile.write("</body></html>")
+        s = open('static/js/resourcepane_web.js').read()
+        s = s.replace('//test', "successful")
+        #s = s.replace('changethisurl', s.get_page())
+        f = open("static/js/resourcepane_web.js", 'w')
+        f.write(s)
+        f.close()
+        print "done"
+        #s.wfile.write("<html><head><title>Proxy Testing.</title></head>")
+        #s.wfile.write("<p>You accessed this path: %s</p>" % s.path)
+        #s.wfile.write("<iframe id='test_iframe' height='600' width='1000' srcdoc='" + s.get_page() + "'></iframe>")
+        #s.wfile.write("<button type='button' onclick='getSelectionText()'>textify</button>")
+        #s.wfile.write("<script>function getSelectionText() { var iframe= document.getElementById('test_iframe'); var idoc= iframe.contentDocument || iframe.contentWindow.document; var iwin= iframe.contentWindow || iframe.contentDocument.defaultView; console.log(''+iwin.getSelection() ) } </script>")
+        #s.wfile.write("</body></html>")
+
 
     def escape(s, htmlstring):
         escapes = {'\"': '&quot;',
                    '\'': '&#39;',
                    '<': '&lt;',
                    '>': '&gt;'}
-        # This is done first to prevent escaping other escapes.
         htmlstring = htmlstring.replace('&', '&amp;')
         for seq, esc in escapes.iteritems():
             htmlstring = htmlstring.replace(seq, esc)
         return htmlstring
-
 
 
 if __name__ == '__main__':

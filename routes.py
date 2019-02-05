@@ -1,14 +1,14 @@
-from flask import Flask, render_template
-app = Flask(__name__)
+#from flask import Flask, render_template
+#app = Flask(__name__)
 
-@app.route('/')
-def start():
-    return render_template('index.html')
+#@app.route('/')
+#def start():
+ #   return render_template('index.html')
 
-@app.route('/background_process_test')
-def background_process_test():
-    print("Hello")
-    return "nothing"
+#@app.route('/background_process_test')
+#def background_process_test():
+ #   print("Hello")
+ #   return "nothing"
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+#if __name__ == "__main__":
+#    app.run(host='0.0.0.0', debug=True)
