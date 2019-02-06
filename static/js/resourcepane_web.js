@@ -33,11 +33,11 @@ function add_web_resource_body(tab_id) {
                     <label id="warning_label_` + tab_id + `" class="text-danger"></label>
                     <textarea id="webAddress_` + tab_id + `" type="text" rows="1" style="resize: none;" class="form-control" placeholder="Web address of this resource..." onchange="change_title('` + tab_id + `')"></textarea>   
                     <label>Content</label>
-		          <iframe id="test_iframe_` + tab_id + `" class="form-control" src='../proxy/ProxyWindow' style="resize: vertical; min-height:50vh;"></iframe>
-
+		          <iframe id="test_iframe_` + tab_id + `" class="form-control" src="{{ url_for ('static', filename='proxy/ProxyWindow.html') }}" style="resize: vertical; min-height:50vh;"></iframe>
                 </div>
 				<div>TEST</div>
                 <div type="button" class="btn btn-default">Refresh</div>
+				<div type="button" class="btn btn-default" onclick="ProxyScript()">Test</div>
 <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
             </form>
     </div>
@@ -64,4 +64,9 @@ function change_title(tab_id) {
 function change_textarea(tab_id) {
     var text = document.getElementById(tab_id).value;
     set_text_resource_content(tab_id, text)
+}
+
+
+function proxy_script() {
+
 }

@@ -78,19 +78,19 @@ function remove_tab() {
 }
 
 function web_search() {
-    var web_address = document.getElementById("webAddress_" + tab_id +).value;
-    var warning_label = document.getElementById("warning_label_" + tab_id +).innerHTML;
-	var proxyIframe = document.getElementById("test_iframe_" + tab_id +);
-	    
+    var web_address = document.getElementById("webAddress_" + tab_id).value;
 	
-    if (web_address.contains(".co.uk")) {
+    var warning_label = document.getElementById("warning_label_" + tab_id).innerHTML;
+	var proxy_iframe = document.getElementById("test_iframe_" + tab_id);
+	    
+	//window.alert();
+	
+    if (web_address.endsWith(".com") || web_address.endsWith(".co.uk") || web_address.endsWith(".gov") || web_address.endsWith(".de") || web_address.endsWith(".net") || web_address.endsWith(".cn") || web_address.endsWith(".info") || web_address.endsWith(".nl")  || web_address.endsWith(".eu") || web_address.endsWith(".ru")){
         add_to_history(web_address);
-        document.getElementById("warning_label_" + tab_id").innerHTML = "";
+        document.getElementById("warning_label_" + tab_id).innerHTML = "";
 		
-		//run python script with web_address as a paramater
+		//run python script with web_address as a parameter
 		//run Proxy(web_address)
-		//return srcdoc
-		//proxyIframe.src = srcdoc
 	
     } else {
         document.getElementById("warning_label_" + tab_id).innerHTML = "This is not a valid web address";
@@ -103,8 +103,6 @@ function refresh(){
 	var showSite = document.getElementsByName('proxy_window')[0];
 	showSite.src = newURL;
 	
-	document.getElementById("results").innerHTML = newURL;
-	//http://siwells.github.io/teaching_set09103/
 }
 
 
@@ -133,9 +131,7 @@ function add_to_history(web_address) {
         li.innerHTML += item;
             console.log(item);
     });
-    
 }
-
 
 
 

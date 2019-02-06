@@ -99,14 +99,12 @@
                     </button>
                 </div>
                 <div class="tab_body" id="tab_body">
-                </div>
+				</div>
             </div>
             <div class="splitter" id="splitter">
             </div>
 
             <div class="visualisation-pane">
-                                <div id="foo">
-                </div>
                 <div id="navbar">
                     <button class="btn-hamburger toggle-button">
                         <i class="fa fa-bars fa-fw fa-lg" style="color: #cbc5c1;"></i>
@@ -392,19 +390,6 @@
 	<script src="{{ url_for ('static', filename='js/keyboard.js') }}"></script>
 	<script src="{{ url_for ('static', filename='js/filemanager.js') }}"></script>
 	<script src="{{ url_for ('static', filename='js/monkeypuzzle.js') }}"></script>
-	
-	
-	<script type="text/javascript">
-				$(function() {
-					$('a#test').bind('click', function() {
-						$.getJSON('/background_process_test',
-						function(data) {
-						//do nothing
-						});
-						return false;
-						});
-					});
-				</script>
 
 </body>
 
