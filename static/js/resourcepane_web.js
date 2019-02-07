@@ -2,7 +2,7 @@ function add_web_resource_body(tab_id) {
     var tab_body = $(`
             
             <div id="` + tab_id + `_body" class="resource_pane_tab_content">
-            <form>
+            <form method="post">
                 <div class="form-group">
 
                         <button type="button" class="btn btn-default" onclick="remove_tab()" title="Remove this tab from the resource pane">
@@ -31,12 +31,11 @@ function add_web_resource_body(tab_id) {
                     <div class="form-group" style="padding-top: 18px;">
                     <label>Website Address</label>                    
                     <label id="warning_label_` + tab_id + `" class="text-danger"></label>
-                    <textarea id="webAddress_` + tab_id + `" type="text" rows="1" style="resize: none;" class="form-control" placeholder="Web address of this resource..." onchange="change_title('` + tab_id + `')"></textarea>   
+                    <input type="text" id="webAddress_` + tab_id + `" name="web_address" value="{{request.form.web_address}}" rows="1" style="resize: none;" class="form-control" onchange="change_title('` + tab_id + `')"> 
                     <label>Content</label>
-		          <iframe id="test_iframe_` + tab_id + `" class="form-control" src="{{ url_for ('static', filename='proxy/ProxyWindow.html') }}" style="resize: vertical; min-height:50vh;"></iframe>
+		          <iframe id="test_iframe_` + tab_id + `" class="form-control" src="" style="resize: vertical; min-height:50vh;"></iframe>
                 </div>
-				<div>TEST</div>
-                <div type="button" class="btn btn-default">Refresh</div>
+                <input class="btn btn-default" type="submit" value="Proxy Button">
 				<div type="button" class="btn btn-default" onclick="ProxyScript()">Test</div>
 <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
             </form>

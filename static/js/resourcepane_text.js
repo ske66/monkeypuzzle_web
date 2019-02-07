@@ -19,6 +19,7 @@ function add_text_resource_body(tab_id) {
                         <button type="button" class="btn btn-default" title="Add node from text selection" onclick="new_atom_txt_resource_button();">
                             <i class="fa fa-puzzle-piece fa-fw fa-lg"></i>
                         </button>
+
                 </div>
                 <div class="form-group">
                     <label>File Name</label>

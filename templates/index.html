@@ -49,13 +49,9 @@
                 <li><a href="#" id="export_button"><button class="btn btn-default" onclick="download_sadface()" title="Export the current analysis to a SADFace formatted JSON document">SADFace</button></a></li>
                 <li><a href="#" target="_blank" id="download_png"><button class="btn btn-default" title="Export the current analysis to a PNG image" onclick="download_png()">PNG</button></a></li>
                 <li><a href="#" target="_blank" id="download_jpg"><button class="btn btn-default" title="Export the current analysis to a JPG image" onclick="download_jpg()">JPG</button></a></li>
-				
-				
-				
-				
-				<li><a href="#" id="test"><button class="btn btn-default" title="Export the current analysis to a JPG image" onclick="">TEST</button></a></li>
             </ul>
         </section>
+
 
         <section class="menu-section">
             <h3 class="menu-section-title">Import</h3>
@@ -91,6 +87,27 @@
     <!-- Main UI: START -->
 
     <main id="panel" class="panel">
+
+        
+        <!-- FOR DEBUGGING, DELETE AFTER IMPLEMENTATION -->
+        
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+
+
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                {{message}}
+            </div>
+        {% endfor%}
+        {% endif %}
+        {% endwith %}
+        
+        
+
         <div class="ui-container">
             <div class="resource-pane" id="resource-pane">
                 <div class="resource_pane_tab_head" id="resource_pane_tab_head">
@@ -99,7 +116,7 @@
                     </button>
                 </div>
                 <div class="tab_body" id="tab_body">
-				</div>
+                </div>
             </div>
             <div class="splitter" id="splitter">
             </div>
@@ -111,7 +128,6 @@
                     </button>
                 </div>
                 <div id="cy" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
-
             </div>
         </div>
     </main>
@@ -365,31 +381,33 @@
 
 
 
+
+
     <!--
     JS Libraries
 -->
     <script src="{{ url_for ('static', filename='lib/jquery.min.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/jquery-resizable.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/jquery.qtip.min.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/bootstrap.min.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/cola.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/lodash.min.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/cytoscape.min.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/cytoscape-cola.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/cytoscape-qtip.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/cytoscape-edgehandles.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/cytoscape-context-menus.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/mousetrap.min.js') }}"></script>
-	<script src="{{ url_for ('static', filename='lib/slideout.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/sadface.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/modal_dialogs.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/resourcepane.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/resourcepane_text.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/resourcepane_web.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/menu.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/keyboard.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/filemanager.js') }}"></script>
-	<script src="{{ url_for ('static', filename='js/monkeypuzzle.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/jquery-resizable.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/jquery.qtip.min.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/cola.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/lodash.min.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/cytoscape.min.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/cytoscape-cola.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/cytoscape-qtip.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/cytoscape-edgehandles.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/cytoscape-context-menus.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/mousetrap.min.js') }}"></script>
+    <script src="{{ url_for ('static', filename='lib/slideout.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/sadface.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/modal_dialogs.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/resourcepane.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/resourcepane_text.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/resourcepane_web.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/menu.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/keyboard.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/filemanager.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/monkeypuzzle.js') }}"></script>
 
 </body>
 
