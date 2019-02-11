@@ -1,44 +1,43 @@
 function add_web_resource_body(tab_id) {
     var tab_body = $(`
-            
-            <div id="` + tab_id + `_body" class="resource_pane_tab_content">
-            <form method="post">
-                <div class="form-group">
-
-                        <button type="button" class="btn btn-default" onclick="remove_tab()" title="Remove this tab from the resource pane">
+    <div id="` + tab_id + `_body" class="resource_pane_tab_content">
+        <form>
+            <div class="form-group">
+                <button type="button" class="btn btn-default" onclick="remove_tab()" title="Remove this tab from the resource pane">
                             <i class="fa fa-trash fa-fw fa-lg"></i>
                         </button>
-
-                        <button type="button" class="btn btn-default" onclick="history_back()" title="Go to previous website">
+                <button type="button" class="btn btn-default" onclick="history_back()" title="Go to previous website">
                             <i class="fa fa-chevron-left fa-fw fa-lg"></i>
                         </button>
-
-                        <button type="button" class="btn btn-default" title="Go to next website">
+                <button type="button" class="btn btn-default" title="Go to next website">
                             <i class="fa fa-chevron-right fa-fw fa-lg"></i>
                         </button>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History
                                 <i class="fa fa-chevron-down fa-fw">
                                 </i>
                             </button>
-                            <div class="dropdown-menu">
-<div id="history_list_`+ tab_id + `" class="container-fluid">
-                            </div>
+                    <div class="dropdown-menu">
+                        <div id="history_list_` + tab_id + `" class="container-fluid">
                         </div>
                     </div>
-                
-                    <div class="form-group" style="padding-top: 18px;">
-                    <label>Website Address</label>                    
-                    <label id="warning_label_` + tab_id + `" class="text-danger"></label>
-                    <input type="text" id="webAddress_` + tab_id + `" name="web_address" value="{{request.form.web_address}}" rows="1" style="resize: none;" class="form-control" onchange="change_title('` + tab_id + `')"> 
-                    <label>Content</label>
-		          <iframe id="test_iframe_` + tab_id + `" class="form-control" src="" style="resize: vertical; min-height:50vh;"></iframe>
                 </div>
-                <input class="btn btn-default" type="submit" value="Proxy Button">
-				<div type="button" class="btn btn-default" onclick="ProxyScript()">Test</div>
-<div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
-            </form>
+                <div class="form-group" style="padding-top: 18px;">
+                    <label>Website Address</label>
+                    <label id="warning_label_` + tab_id + `" class="text-danger"></label>
+                    <input type="text" id="webAddress_` + tab_id + `" name="txtAddress" rows="1" style="resize: none;" class="form-control" onchange="change_title('` + tab_id + `')">
+                    <label>Content</label>
+                    <iframe id="test_iframe_` + tab_id + `" class="form-control" src="" style="resize: vertical; min-height:50vh;"></iframe>
+                </div>
+                <a href="#" id="process_input">
+                    <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
+                </a>
+                <p id="result">...</p>
+            </div>
+
+        </form>
+
+
     </div>
     `);
 
@@ -63,9 +62,4 @@ function change_title(tab_id) {
 function change_textarea(tab_id) {
     var text = document.getElementById(tab_id).value;
     set_text_resource_content(tab_id, text)
-}
-
-
-function proxy_script() {
-
 }

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('a#process_input').bind('click', function() {
+                $.getJSON('/background_process', {
+                    proglang: $('input[name="webAddress"]').val(),
+                }, function(data) {
+                    //$("#result").attr('src', data.result);
+                    $("#result").text(data.result);
+                });
+                return false;
+            });
+        });
+
+    </script>
+
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/jquery.qtip.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', filename='css/cytoscape-context-menus.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', filename='css/monkeypuzzle.css') }}" rel="stylesheet" type="text/css" />
+
+</head>
+
+
+<body>
+
+
+    <h3>Which is the best programming language of them all?</h3>
+
+    <form>
+        <input type="text" size=5 name="webAddress4">
+        <a href='#' id="process_input2"><button class='btn btn-default'>Submit</button></a>
+    </form>
+
+    <p id="result3">...</p>
+
+    <iframe id="result2" width="600px" src="https://google.com" height="500px" src=""></iframe>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

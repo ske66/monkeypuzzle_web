@@ -19,8 +19,7 @@ function add_tab(load_id = null) {
     var resource_type_txt = document.getElementById("resource_type").options[resource_type_idx].text;
     if (resource_type_txt.toLowerCase() === "text") {
         add_text_resource_body(tab_id);
-    }
-    else if (resource_type_txt.toLowerCase() === "web") {
+    } else if (resource_type_txt.toLowerCase() === "web") {
         add_web_resource_body(tab_id);
     }
 
@@ -77,31 +76,45 @@ function remove_tab() {
 }
 
 function web_search() {
+    
+    
+    /* REMOVE VALIDATION */
+    
+    
     var web_address = document.getElementById("webAddress_" + tab_id).value;
-	
+
     var warning_label = document.getElementById("warning_label_" + tab_id).innerHTML;
-	var proxy_iframe = document.getElementById("test_iframe_" + tab_id);
-	    
-	//window.alert();
-	
-    if (web_address.endsWith(".com") || web_address.endsWith(".co.uk") || web_address.endsWith(".gov") || web_address.endsWith(".de") || web_address.endsWith(".net") || web_address.endsWith(".cn") || web_address.endsWith(".info") || web_address.endsWith(".nl")  || web_address.endsWith(".eu") || web_address.endsWith(".ru")){
+    var proxy_iframe = document.getElementById("test_iframe_" + tab_id);
+
+    //window.alert();
+
+    if (web_address.endsWith(".com") || web_address.endsWith(".co.uk") || web_address.endsWith(".gov") || web_address.endsWith(".de") || web_address.endsWith(".net") || web_address.endsWith(".cn") || web_address.endsWith(".info") || web_address.endsWith(".nl") || web_address.endsWith(".eu") || web_address.endsWith(".ru")) 
+    {
         add_to_history(web_address);
         document.getElementById("warning_label_" + tab_id).innerHTML = "";
-		
-		//run python script with web_address as a parameter
-		//run Proxy(web_address)
-	
+        
+        //RUNS PROXY SCRIPT
+        $('a#process_input').bind('click', function() {
+            $.getJSON('/background_process', {
+                txtAddress: $('input[name="txtAddress"]').val(),
+            }, function(data) {
+                //$("#result").attr('src', data.result);
+                $("#result").text(data.result);
+            });
+            return false;
+        });
+
     } else {
         document.getElementById("warning_label_" + tab_id).innerHTML = "This is not a valid web address";
-    }		
+    }
 }
 
 
-function refresh(){
-	var newURL = document.getElementById('website_url').value;
-	var showSite = document.getElementsByName('proxy_window')[0];
-	showSite.src = newURL;
-	
+function refresh() {
+    var newURL = document.getElementById('website_url').value;
+    var showSite = document.getElementsByName('proxy_window')[0];
+    showSite.src = newURL;
+
 }
 
 
@@ -113,22 +126,21 @@ function add_to_history(web_address) {
     if (web_history.length > 10) {
         web_history.splice(10, 1);
     }
-    
- var list = document.getElementById("history_list_" + tab_id)
-    
-    while(list.firstChild)
-        {
-            list.removeChild(list.firstChild)
-        }
+
+    var list = document.getElementById("history_list_" + tab_id)
+
+    while (list.firstChild) {
+        list.removeChild(list.firstChild)
+    }
 
     list.append(ul);
-        
+
     web_history.forEach(function (item) {
         var li = document.createElement('li_' + tab_id);
         ul.appendChild(li);
-        
+
         li.innerHTML += item;
-            console.log(item);
+        console.log(item);
     });
 }
 
