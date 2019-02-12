@@ -6,12 +6,6 @@ function add_web_resource_body(tab_id) {
                 <button type="button" class="btn btn-default" onclick="remove_tab()" title="Remove this tab from the resource pane">
                             <i class="fa fa-trash fa-fw fa-lg"></i>
                         </button>
-                <button type="button" class="btn btn-default" onclick="history_back()" title="Go to previous website">
-                            <i class="fa fa-chevron-left fa-fw fa-lg"></i>
-                        </button>
-                <button type="button" class="btn btn-default" title="Go to next website">
-                            <i class="fa fa-chevron-right fa-fw fa-lg"></i>
-                        </button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">History
                                 <i class="fa fa-chevron-down fa-fw">
@@ -22,12 +16,15 @@ function add_web_resource_body(tab_id) {
                         </div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-default" title="Add node from text selection" onclick="new_atom_web_resource_button();">
+                            <i class="fa fa-puzzle-piece fa-fw fa-lg"></i>
+                        </button>
                 <div class="form-group" style="padding-top: 18px;">
                     <label>Website Address</label>
                     <label id="warning_label_` + tab_id + `" class="text-danger"></label>
                     <input type="text" id="webAddress_` + tab_id + `" name="txtAddress" rows="1" style="resize: none;" class="form-control" onchange="change_title('` + tab_id + `')">
                     <label>Content</label>
-                    <iframe id="web_iframe" class="form-control" src="" style="resize: vertical; min-height:50vh;"></iframe>
+                    <iframe id="iframeTest" class="form-control" onfocus="set_focus(this)" src="" style="resize: vertical; min-height:50vh;"></iframe>
                 </div>
                 <a href="#" id="process_input">
                     <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
@@ -54,12 +51,21 @@ function set_web_resource_content(tab_id, text) {
     update_local_storage();
 }
 
-function change_title(tab_id) {
-    var title = document.getElementById("webAddress_" + tab_id).value;
-    set_text_resource_title(tab_id, title)
-}
 
-function change_textarea(tab_id) {
-    var text = document.getElementById(tab_id).value;
-    set_text_resource_content(tab_id, text)
+//object.onfocus = function(){myScript};
+
+function new_atom_web_resource_button() {
+    if(focused != null || focused != undefined){
+        console.log("1")
+        if(focused.parentNode.id == "iframeTest"){
+                    console.log("2")
+            selected_text = get_selected_text();
+            if(selected_text != null){
+                        console.log("3")
+                add_new_atom_node(selected_text);
+            }
+        }
+        focused == null
+    }
+    else { console.log("Not a valid text source")}
 }

@@ -86,28 +86,8 @@
 
     <!-- Main UI: START -->
 
-    <main id="panel" class="panel">
-
+    <main id="panel" class="panel">    
         
-        <!-- FOR DEBUGGING, DELETE AFTER IMPLEMENTATION -->
-        
-        
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-
-
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                {{message}}
-            </div>
-        {% endfor%}
-        {% endif %}
-        {% endwith %}
-        
-        
-
         <div class="ui-container">
             <div class="resource-pane" id="resource-pane">
                 <div class="resource_pane_tab_head" id="resource_pane_tab_head">

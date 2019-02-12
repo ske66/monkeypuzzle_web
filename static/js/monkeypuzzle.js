@@ -452,6 +452,23 @@ function get_selected_text() {
             return selected_text;
         }
     }
+    
+    //iFRAME GET SELECTION
+    
+    var frame = document.getElementById('iframeTest');
+    
+    var frameWindow = frame && frame.contentWindow;
+    var frameDocument = frameWindow && frameWindow.document;
+    
+    if (frameDocument.getSelection().toString().length>0)
+        {
+        if(idoc.getSelection().baseNode.id=="iframeTest")
+            {
+                selected_text = idoc.getSelection().toString();
+                clear_selection();
+                return selected_text;
+            }
+        }
     return null;
 }
 
