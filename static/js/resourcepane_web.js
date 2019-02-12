@@ -27,7 +27,7 @@ function add_web_resource_body(tab_id) {
                     <label id="warning_label_` + tab_id + `" class="text-danger"></label>
                     <input type="text" id="webAddress_` + tab_id + `" name="txtAddress" rows="1" style="resize: none;" class="form-control" onchange="change_title('` + tab_id + `')">
                     <label>Content</label>
-                    <iframe id="test_iframe_` + tab_id + `" class="form-control" src="" style="resize: vertical; min-height:50vh;"></iframe>
+                    <iframe id="web_iframe" class="form-control" src="" style="resize: vertical; min-height:50vh;"></iframe>
                 </div>
                 <a href="#" id="process_input">
                     <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>

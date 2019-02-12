@@ -84,7 +84,6 @@ function web_search() {
     var web_address = document.getElementById("webAddress_" + tab_id).value;
 
     var warning_label = document.getElementById("warning_label_" + tab_id).innerHTML;
-    var proxy_iframe = document.getElementById("test_iframe_" + tab_id);
 
     //window.alert();
 
@@ -98,7 +97,7 @@ function web_search() {
             $.getJSON('/background_process', {
                 txtAddress: $('input[name="txtAddress"]').val(),
             }, function(data) {
-                //$("#result").attr('src', data.result);
+                $("#web_iframe").attr('srcdoc', data.result);
                 $("#result").text(data.result);
             });
             return false;
