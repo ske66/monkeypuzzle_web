@@ -98,7 +98,6 @@ function web_search() {
                 txtAddress: $('input[name="txtAddress"]').val(),
             }, function(data) {
                 $("#web_iframe").attr('srcdoc', data.result);
-                $("#result").text(data.result);
             });
             return false;
         });

@@ -1,6 +1,6 @@
 from __future__ import print_function
-from flask import Flask, render_template, flash, request, jsonify
-import BaseHTTPServer, time, sys, requests, socket
+from flask import Flask, render_template, flash, jsonify, request
+import sys, requests
 
 app = Flask(__name__)
 app.secret_key = 'some secret key'
@@ -11,13 +11,15 @@ def start():
 
 @app.route('/background_process')
 def background_process():
+    
     try:
-        #address = request.args.get('txtAddress')
-        #return jsonify(result=str(address).lower())
-        return jsonify(result="<h1>hello</h1>")
+        address = request.args.get("txtAddress")
+        resp = requests.get(address)        
+        return jsonify(result=resp.text)
 
     except Exception, e:
         return(str(e))
+
 
 if __name__ == "__main__":
      app.run(host='0.0.0.0', debug=True)
