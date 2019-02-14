@@ -97,8 +97,7 @@ function web_search() {
             $.getJSON('/background_process', {
                 txtAddress: $('input[name="txtAddress"]').val(),
             }, function(data) {
-                $("#iframeTest").attr('srcdoc', data.result);
-                $("#result").text(data.result);
+                $("#web_iframe").attr('srcdoc', data.result);
             });
             return false;
         });
