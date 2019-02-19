@@ -452,25 +452,22 @@ function get_selected_text() {
             return selected_text;
         }
     }
-    
-    //iFRAME GET SELECTION
-    
-    var frame = document.getElementById('iframeTest');
-    
-    var frameWindow = frame && frame.contentWindow;
-    var frameDocument = frameWindow && frameWindow.document;
-    
-    if (frameDocument.getSelection().toString().length>0)
-        {
-        if(idoc.getSelection().baseNode.id=="iframeTest")
-            {
-                selected_text = idoc.getSelection().toString();
-                clear_selection();
-                return selected_text;
-            }
-        }
     return null;
 }
+
+
+function get_selected_web_text(){
+    var selected_text = undefined;
+    var selected_iframe = document.getElementById("web_iframe");
+    var iwin = selected_iframe.contentWindow || selected_iframe.contentDocument.defaultView;
+    if (iwin.getSelection().toString().length > 0) 
+    {
+        selected_text = ''+iwin.getSelection().toString();
+        clear_web_selection();
+        return selected_text;
+    }
+}
+
 
 function clear_selection() {
     if (window.getSelection) {
@@ -485,8 +482,30 @@ function clear_selection() {
     }
 }
 
+function clear_web_selection() {
+    var iframe_window = document.getElementById("web_iframe");
+    var docWindow = iframe_window.contentDocument || iframe_window.contentWindow.document;
+    if (docWindow.getSelection){
+        if (docWindow.getSelection().empty){
+            docWindow.getSelection().empty();
+        }
+        else if (docWindow.getSelection().removeAllRanges) {
+            docWindow.getSelection().removeAllRanges();
+        }
+        } else if (docWindow.selection) {
+        docWindow.selection.empty();
+    }
+}
+
 function set_focus(element) {
     focused = document.getElementById(element.id);//.id;
+}
+
+function set_iframe_focus(element) {
+    
+    if (document.activeElement == document.getElementById("web_iframe")) {
+        focused = document.getElementById("web_iframe");
+    }
 }
 
 function clear_focus(){

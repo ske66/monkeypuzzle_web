@@ -58,7 +58,7 @@ function change_textarea(tab_id) {
 
 function new_atom_txt_resource_button() {   
     if(focused != null || focused != undefined){
-        console.log("1")
+        console.log(focused.parentNode);
         if(focused.parentNode.id == "textarea"){
             selected_text = get_selected_text();
             if(selected_text != null){

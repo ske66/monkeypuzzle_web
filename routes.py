@@ -9,15 +9,21 @@ app.secret_key = 'some secret key'
 def start():
     return render_template('index.html')
 
-@app.route('/background_process')
-def background_process():
+@app.route('/Proxy')
+def Proxy():
     
     try:
         address = request.args.get("txtAddress")
-        resp = requests.get(address)        
+
+        newaddress = address.replace('www.', 'https://', 1)
+        resp = requests.get(newaddress)
         return jsonify(result=resp.text)
 
-    except Exception, e:
+
+
+        
+
+    except Exception as e:
         return(str(e))
 
 

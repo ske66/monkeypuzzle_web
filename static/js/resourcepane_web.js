@@ -16,17 +16,17 @@ function add_web_resource_body(tab_id) {
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-default" title="Add node from text selection" onclick="new_atom_web_resource_button();">
+                <button type="button" class="btn btn-default" title="Add node from text selection" tabIndex="-1" onclick="new_atom_web_resource_button();">
                             <i class="fa fa-puzzle-piece fa-fw fa-lg"></i>
                         </button>
                 <div class="form-group" style="padding-top: 18px;">
                     <label>Website Address</label>
-                    <label id="warning_label_` + tab_id + `" class="text-danger"></label>
                     <input type="text" id="webAddress_` + tab_id + `" name="txtAddress" rows="1" style="resize: none;" class="form-control" placeholder="Address of chosen website..." onchange="change_title('` + tab_id + `')">
                     <label>Content</label>
+                
                     <iframe id="web_iframe" class="form-control" src="" style="min-height:70vh;"></iframe>
                 </div>
-                <a href="#" id="process_input">
+                <a href="#" id="btnProxy">
                     <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
                 </a>
             </div>
@@ -51,20 +51,18 @@ function set_web_resource_content(tab_id, text) {
 }
 
 
-//object.onfocus = function(){myScript};
-
 function new_atom_web_resource_button() {
-    if(focused != null || focused != undefined){
-        console.log("1")
-        if(focused.parentNode.id == "iframeTest"){
-                    console.log("2")
-            selected_text = get_selected_text();
-            if(selected_text != null){
-                        console.log("3")
+
+    set_iframe_focus("web_iframe");
+
+    if (focused != null || focused != undefined) {
+        if (focused.id == "web_iframe") {
+            selected_text = get_selected_web_text();
+            if (selected_text != null) {
                 add_new_atom_node(selected_text);
             }
         }
         focused == null
-    }
-    else { console.log("Not a valid text source")}
+    } 
+    else { console.log("Not a valid text source") }
 }

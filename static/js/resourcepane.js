@@ -76,35 +76,25 @@ function remove_tab() {
 }
 
 function web_search() {
-    
-    
+
+
     /* REMOVE VALIDATION */
-    
-    
+
     var web_address = document.getElementById("webAddress_" + tab_id).value;
 
-    var warning_label = document.getElementById("warning_label_" + tab_id).innerHTML;
+    var btnProxy = $("#btnProxy");
 
-    //window.alert();
-
-    if (web_address.endsWith(".com") || web_address.endsWith(".co.uk") || web_address.endsWith(".gov") || web_address.endsWith(".de") || web_address.endsWith(".net") || web_address.endsWith(".cn") || web_address.endsWith(".info") || web_address.endsWith(".nl") || web_address.endsWith(".eu") || web_address.endsWith(".ru")) 
-    {
-        add_to_history(web_address);
-        document.getElementById("warning_label_" + tab_id).innerHTML = "";
-        
-        //RUNS PROXY SCRIPT
-        $('a#process_input').bind('click', function() {
-            $.getJSON('/background_process', {
+    //RUNS PROXY SCRIPT
+        btnProxy.bind('click', function() {
+            $.getJSON('/Proxy', {
                 txtAddress: $('input[name="txtAddress"]').val(),
             }, function(data) {
                 $("#web_iframe").attr('srcdoc', data.result);
+            btnProxy.unbind("click");
             });
             return false;
         });
 
-    } else {
-        document.getElementById("warning_label_" + tab_id).innerHTML = "This is not a valid web address";
-    }
 }
 
 
@@ -114,34 +104,6 @@ function refresh() {
     showSite.src = newURL;
 
 }
-
-
-
-function add_to_history(web_address) {
-    web_history.unshift(web_address);
-    var ul = document.createElement('ul_' + tab_id);
-
-    if (web_history.length > 10) {
-        web_history.splice(10, 1);
-    }
-
-    var list = document.getElementById("history_list_" + tab_id)
-
-    while (list.firstChild) {
-        list.removeChild(list.firstChild)
-    }
-
-    list.append(ul);
-
-    web_history.forEach(function (item) {
-        var li = document.createElement('li_' + tab_id);
-        ul.appendChild(li);
-
-        li.innerHTML += item;
-        console.log(item);
-    });
-}
-
 
 
 function remove_all_tabs() {
