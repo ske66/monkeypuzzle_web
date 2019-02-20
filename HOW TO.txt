@@ -9,3 +9,10 @@ export FLASK_APP=routes.py
 export FLASK_ENV=development
 
 python -m flask run --host=0.0.0.0 --port 8080
+
+
+Client ID - 901403089982-mbufnjdp47f9bn312t90csal8a8cpg1r.apps.googleusercontent.com
+
+Secret - Eqzu-ongZAbXtC6cBPXwuytF
+
+API key - AIzaSyCe1u8u5YuCIYObGkSZ__g4AyyXpFk3uIY
