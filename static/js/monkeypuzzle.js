@@ -502,10 +502,10 @@ function set_focus(element) {
 }
 
 function set_iframe_focus(element) {
-    
-    if (document.activeElement == document.getElementById("web_iframe")) {
-        focused = document.getElementById("web_iframe");
-    }
+    console.log(document.activeElement);
+    //if (document.activeElement == document.getElementById("web_iframe")) {
+        focused = document.getElementById(element);
+    //}
 }
 
 function clear_focus(){
