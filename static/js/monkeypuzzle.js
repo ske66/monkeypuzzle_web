@@ -18,6 +18,7 @@ var undo_stack = [];
 var redo_stack = [];
 var edit_atom = null;
 var resource_pane_viewable_state = true;
+var web_text = false;
 
 initialise_monkeypuzzle();
 
@@ -462,10 +463,13 @@ function get_selected_web_text(){
     var iwin = selected_iframe.contentWindow || selected_iframe.contentDocument.defaultView;
     if (iwin.getSelection().toString().length > 0) 
     {
-        selected_text = ''+iwin.getSelection().toString();
+		web_text = true;
+        selected_text = iwin.getSelection().toString();
         clear_web_selection();
         return selected_text;
     }
+	web_text = false;
+
 }
 
 
@@ -502,10 +506,7 @@ function set_focus(element) {
 }
 
 function set_iframe_focus(element) {
-    console.log(document.activeElement);
-    //if (document.activeElement == document.getElementById("web_iframe")) {
-        focused = document.getElementById(element);
-    //}
+    focused = document.getElementById(element);
 }
 
 function clear_focus(){
@@ -557,7 +558,15 @@ function dragover_handler(ev) {
 function drop_handler(ev) {
     ev.preventDefault();
     position = {x: ev.clientX-280, y: ev.clientY+200};
-    add_new_atom_node(get_selected_text());
+	if (web_text == false)
+	{
+		add_new_atom_node(get_selected_text());
+	}
+	else
+	{
+		add_new_atom_node(get_selected_web_text());
+	}
+
 }
 
 function merge_nodes() {

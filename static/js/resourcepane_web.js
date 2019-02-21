@@ -21,10 +21,25 @@ function add_web_resource_body(tab_id) {
                         </button>
                 <div class="form-group" style="padding-top: 18px;">
                     <label>Website Address</label>
-                    <input type="text" id="webAddress_` + tab_id + `" name="txtAddress" rows="1" style="resize: none;" class="form-control" placeholder="Address of chosen website..." onchange="change_title('` + tab_id + `')">
+                    <input type="text" id="webAddress_` + tab_id + `" name="txtAddress" rows="1" style="resize: none;" class="form-control" placeholder="Address of chosen website...">
                     <label>Content</label>
-                
-                    <iframe id="web_iframe" class="form-control" src="" style="min-height:70vh;"></iframe>
+                <style>
+				div#loading {
+    top: 200 px;
+    margin: auto;
+    position: absolute;
+    z-index: 1000;
+    width: 160px;
+    height: 24px;
+    background: url(loadingimage.gif) no-repeat;
+    cursor: wait;
+    }
+				
+				
+				
+				</style>
+                    <iframe id="web_iframe" class="form-control" src="" style="min-height:70vh;"><div id="loading"></div>
+</iframe>
                 </div>
                 <a href="#" id="btnProxy">
                     <div type="button" class="btn btn-primary" onclick="web_search()">Search</div>
@@ -49,6 +64,13 @@ function set_web_resource_content(tab_id, text) {
     update_resource(tab_id, text, null);
     update_local_storage();
 }
+
+
+ function preloader(){
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+window.onload = preloader;
 
 
 function new_atom_web_resource_button() {

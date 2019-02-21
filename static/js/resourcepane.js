@@ -80,8 +80,6 @@ function web_search() {
 
     /* REMOVE VALIDATION */
 
-    var web_address = document.getElementById("webAddress_" + tab_id).value;
-
     var btnProxy = $("#btnProxy");
 
     //RUNS PROXY SCRIPT

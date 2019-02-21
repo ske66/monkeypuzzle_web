@@ -22,7 +22,6 @@ function download_sadface()
     filemanager('save','json',null)
 }
 
-
 function download_png()
 {
     var filename = document.getElementById("export_filename").value;
