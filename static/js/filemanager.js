@@ -45,6 +45,7 @@ function filemanager(operation, filetype, tab_id)
 			var files = document.getElementById("loadJSON").files;
 			var file = files[0];
 			var reader = loadSADFace(file);
+			console.log(file);
 			reader.onload = function(e) {
 				var result = reader.result;
 				localStorage.setItem("state",result);

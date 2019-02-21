@@ -65,14 +65,6 @@ function set_web_resource_content(tab_id, text) {
     update_local_storage();
 }
 
-
- function preloader(){
-            document.getElementById("loading").style.display = "none";
-            document.getElementById("content").style.display = "block";
-        }
-window.onload = preloader;
-
-
 function new_atom_web_resource_button() {
 
     set_iframe_focus("web_iframe");

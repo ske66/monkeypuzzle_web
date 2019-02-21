@@ -49,7 +49,7 @@
                 <li>
                     <div style="margin-left: 20px; margin-right: 60px;"><textarea id="export_filename" type="text" rows="1" cols="20" maxlength="20" style="resize: none;" class="form-control" placeholder="Filename" title="The name for the exported file"></textarea></div>
                 </li>
-                <li><a href="#" id="export_button"><button class="btn btn-default" onclick="loadPicker(true)" title="Export the current analysis to Google Drive as a SADFace formatted JSON document"><i class="fab fa-google-drive"></i> Save to Drive</button></a></li>
+                <li><a href="#" id=""><button class="g-savetodrive" title="Export the current analysis to Google Drive as a SADFace formatted JSON document" data-src="//example.com/path/to/myfile.pdf" data-filename="My Statement.pdf" data-sitename="My Company Name"></button></a></li>
                 <li><a href="#" id="export_button"><button class="btn btn-default" onclick="download_sadface()" title="Export the current analysis to a SADFace formatted JSON document">SADFace</button></a></li>
                 <li><a href="#" target="_blank" id="download_png"><button class="btn btn-default" title="Export the current analysis to a PNG image" onclick="download_png()">PNG</button></a></li>
                 <li><a href="#" target="_blank" id="download_jpg"><button class="btn btn-default" title="Export the current analysis to a JPG image" onclick="download_jpg()">JPG</button></a></li>
@@ -65,7 +65,7 @@
                         <div display="inline-block">
                             <input id="loadJSON" style="display:none;" accept=".json" role="button" tabindex="-1000" type="file" class="upload-button" onchange="filemanager('load','json',null,null,null)">
                             <input type="button" class="btn btn-default" value="SADFace" onclick="document.getElementById('loadJSON').click();" title="Load a SADFace formatted JSON document into MonkeyPuzzle" />
-                            <button type="button" class="btn btn-default" onclick="loadPicker(false)" title="Load from Google Drive into MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
+                            <button type="button" class="btn btn-default" onclick="loadPicker()" title="Load from Google Drive into MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
                         </div>
                     </a>
                 </span>
@@ -393,6 +393,7 @@
     <script src="{{ url_for ('static', filename='js/monkeypuzzle.js') }}"></script>
     <script src="{{ url_for ('static', filename='js/google_drive.js' )}}"></script>
     <script type="text/javascript" src="https://apis.google.com/js/api.js?"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </body>
 
