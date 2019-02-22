@@ -33,6 +33,8 @@ function onAuthApiLoad() {
             'immediate': false
         },
         handleAuthResult);
+		
+
 }
 
 function onPickerApiLoad() {
@@ -76,21 +78,29 @@ function pickerCallback(data) {
         
         var fileId = data.docs[0].id;
 		
-		console.log(fileId + "      " + oauthToken);
-        
-        //AJAX wizardry
-        $.getJSON({
-            url:'/drive_download',
-            data: { tokenID: oauthToken, fileID: fileId },
-            success: function(data){
-                
-            //Do Stuff now
-            
-            console.log(data.result);
-                
-            }
-        });
-    }
+		console.log(fileId + " " + oauthToken);
+		
+		execute(function);
+		
+		
+		
+		//READ THIS - https://stackoverflow.com/questions/15589794/call-gapi-client-load-before-all-my-executions-correct
+		
+		//https://developers.google.com/drive/api/v2/reference/files/list#try-it
+		
+		//https://developers.google.com/drive/api/v3/reference/files/get?apix=true&apix_params=%7B%22fileId%22%3A%221-5VcLySn4QFR1LZFq16mgE8ZlKE3MEDa%22%7D#try-it
+	}
 }
 
-//<input id="loadJSON" style="display:none;" accept=".json" role="button" tabindex="-1000" type="file" class="upload-button" onchange="filemanager('load','json',null,null,null)">
+function execute(callback) {
+	
+	
+	return gapi.client.drive.files.get({
+		"fileId": fileId
+		})
+		.then(function(response) {
+			//Handle the results here (response.result has the parsed body)
+			console.log("Response", response);
+        },
+		function(err) { console.error("Execute error", err); });
+    }

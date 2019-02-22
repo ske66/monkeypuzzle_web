@@ -29,32 +29,10 @@ def Proxy():
         return(str(e))
 
 
-@app.route('/drive_download', methods=['GET'])
+@app.route('/drive_download')
 def drive_download():
 
-    try:
-        code = request.args.get("tokenID")
-        fileID = request.args.get("fileID")
-    
-        credentials = AccessTokenCredentials(code, 'my-user-agent/1.0')
-
-        http = httplib2.Http()
-        http_auth = credentials.authorize(http)
-
-        drive_service = build('drive', 'v3', http=http_auth)
-
-        data = drive_service.files().export(
-            fileID = fileID,
-            mimeType='application/json').execute()
-
-        f = open('test.json')
-        f.write(data)
-        f.close()
-        print ("Good", sys=std.err) ##not working??
         return jsonify(result="it works kk ") #for testing purposes
-
-    except Exception as e:
-        return(str(e))
 
 
 
