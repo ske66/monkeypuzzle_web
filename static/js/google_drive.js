@@ -75,12 +75,13 @@ function pickerCallback(data) {
     if (data.action == google.picker.Action.PICKED) {
         
         var fileId = data.docs[0].id;
+		
+		console.log(fileId + "      " + oauthToken);
         
         //AJAX wizardry
-        
         $.getJSON({
             url:'/drive_download',
-            data: { itemID: fileId },
+            data: { tokenID: oauthToken, fileID: fileId },
             success: function(data){
                 
             //Do Stuff now

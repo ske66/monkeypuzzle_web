@@ -1,11 +1,12 @@
 from __future__ import print_function
 from flask import Flask, render_template, flash, jsonify, request
-import sys, requests
+import sys, requests, mimetypes
 import pickle
 import os.path
 from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+from googleapiclient.http import MediaIoBaseDownload
+from oauth2client.client import AccessTokenCredentials
+import httplib2
 
 app = Flask(__name__)
 app.secret_key = 'some secret key'
@@ -31,18 +32,30 @@ def Proxy():
 @app.route('/drive_download', methods=['GET'])
 def drive_download():
 
-        file_id = request.args.get("itemID")
-        print(file_id, file=sys.stderr)
+    try:
+        code = request.args.get("tokenID")
+        fileID = request.args.get("fileID")
+    
+        credentials = AccessTokenCredentials(code, 'my-user-agent/1.0')
 
-        request = drive_service.files().get_media(fileId=file_id)
-        #fh = io.BytesIO()
-        #downloader = MediaIoBaseDownload(fh, request)
-        #done = False
-        #while done is False:
-        #    status, done = downloader.next_chunk()
-        #    print "Download %d%%." % int(status.progress() * 100)
+        http = httplib2.Http()
+        http_auth = credentials.authorize(http)
 
-        return jsonify(result="it works kk " + file_id)
+        drive_service = build('drive', 'v3', http=http_auth)
+
+        data = drive_service.files().export(
+            fileID = fileID,
+            mimeType='application/json').execute()
+
+        f = open('test.json')
+        f.write(data)
+        f.close()
+        print ("Good", sys=std.err) ##not working??
+        return jsonify(result="it works kk ") #for testing purposes
+
+    except Exception as e:
+        return(str(e))
+
 
 
 if __name__ == "__main__":
