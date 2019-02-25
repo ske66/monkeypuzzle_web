@@ -73,6 +73,20 @@ def drive_download():
         return(str(e))
 
 
+@app.route('/drive_upload')
+def drive_upload():
+
+       # drive_service = build('drive', 'v3', credentials=getCredentials())
+
+   # file_metadata = {'name': filename}
+   # media = MediaFileUpload(filepath,
+    #                        mimetype=mimeType)
+   # file = drive_service.files().create(body=file_metadata,
+     #                                   media_body=media,
+    #                                    fields='id').execute()
+   # print('File ID: %s' % file.get('id'))
+
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
