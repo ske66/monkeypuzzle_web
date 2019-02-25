@@ -814,6 +814,9 @@ function saveSADFace(filename, filetype) {
     */
     var f = filename;
     var text;
+	
+	var test = true;
+	
     if (f === null || f === undefined) {
         f = f_name;
     }
@@ -828,7 +831,37 @@ function saveSADFace(filename, filetype) {
         f += ".json";
         text = JSON.stringify(sd, null, 2);
     }
-    download(f, text);
+	
+	
+	if (test == true)
+	{
+		var blob = new Blob([text], {type : 'application/json'});
+		var url = URL.createObjectURL(blob);
+		
+		//AJAX CALL
+	
+	$.getJSON({
+            url: '/drive_upload',
+            data: {
+                filepath: url
+            },
+            success: function (data) {
+
+				console.log("fuck yeah motherfucker");
+
+            }
+        });
+		
+		
+		
+		
+		console.log(url);
+	}
+	else
+	{
+		download(f, text);
+	}
+	
 }
 
 function loadSADFace(file) {
@@ -852,34 +885,20 @@ function download(filename, text) {
     outfile.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
     outfile.setAttribute("download", filename);
 	
-	downloadURI = ("localhost:8000/data:text/plain;charset=utf-8," + encodeURIComponent(text))
+	downloadURI = ("data:text/plain;charset=utf-8," + encodeURIComponent(text));
+	localStorage.setItem(filename, text);
 	
-	console.log(downloadURI);
+	
+	
 
 	
-	//AJAX CALL
 	
-	$.getJSON({
-            url: '/drive_upload',
-            data: {
-                filepath: downloadURI
-            },
-            success: function (data) {
-
-				console.log("fuck yeah motherfucker");
-                //loadJSON(data);
-                //var json = JSON.parse(data);
-                //remove_all_tabs();
-                //loadTabs(json.resources);
-
-
-            }
-        });
 	
     outfile.style.display = "none";
     document.body.appendChild(outfile);
+	
 
-    //outfile.click();
+    outfile.click();
 
     document.body.removeChild(outfile);
 }
@@ -890,6 +909,7 @@ function update() {
     */
     sd.edited = now();
 }
+
 
 function update_analyst_email(analystemail) {
     /*

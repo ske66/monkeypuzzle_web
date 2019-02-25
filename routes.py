@@ -95,9 +95,9 @@ def drive_upload():
                 pickle.dump(creds, token)
             
 
-        filepath = request.args.get("filepath")
-        filename = "test.json"
-        mimeType = "application/json"
+        filepath = "HOW_TO.txt"  #request.args.get("filepath")
+        filename = "test.txt"
+        mimeType = "text/plain"
 
         drive_service = build('drive', 'v3', credentials=creds)
 
@@ -108,7 +108,7 @@ def drive_upload():
 
     
 
-        return jsonify(jsonRead) #for testing purposes
+        return jsonify("Good") #for testing purposes
 
     except Exception as e:
         return(str(e))
