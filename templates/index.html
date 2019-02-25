@@ -11,7 +11,7 @@
     <link href="{{ url_for('static', filename='css/jquery.qtip.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url_for('static', filename='css/cytoscape-context-menus.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url_for('static', filename='css/monkeypuzzle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static',filename='css/monkeypuzzle.css') }}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/brands.css" integrity="sha384-BKw0P+CQz9xmby+uplDwp82Py8x1xtYPK3ORn/ZSoe6Dk3ETP59WCDnX+fI1XCKK" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css" integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous">
@@ -42,6 +42,23 @@
             </ul>
         </section>
 
+        <script>
+            function textMethod() {
+
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+
+                element.style.display = 'none';
+                document.body.appendChild(element);
+
+                element.click();
+
+                document.body.removeChild(element);
+
+            }
+
+        </script>
+
 
         <section class="menu-section">
             <h3 class="menu-section-title">Export</h3>
@@ -49,8 +66,10 @@
                 <li>
                     <div style="margin-left: 20px; margin-right: 60px;"><textarea id="export_filename" type="text" rows="1" cols="20" maxlength="20" style="resize: none;" class="form-control" placeholder="Filename" title="The name for the exported file"></textarea></div>
                 </li>
-                <li><a href="#" id=""><button class="g-savetodrive" title="Export the current analysis to Google Drive as a SADFace formatted JSON document" data-src="//example.com/path/to/myfile.pdf" data-filename="My Statement.pdf" data-sitename="My Company Name"></button></a></li>
                 <li><a href="#" id="export_button"><button class="btn btn-default" onclick="download_sadface()" title="Export the current analysis to a SADFace formatted JSON document">SADFace</button></a></li>
+                <li><a href="#" id="drive_button"><button type="button" class="btn btn-default" onclick="uploadToGoogle()" title="Upload to Google Drive from MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
+                    </a>
+                </li>
                 <li><a href="#" target="_blank" id="download_png"><button class="btn btn-default" title="Export the current analysis to a PNG image" onclick="download_png()">PNG</button></a></li>
                 <li><a href="#" target="_blank" id="download_jpg"><button class="btn btn-default" title="Export the current analysis to a JPG image" onclick="download_jpg()">JPG</button></a></li>
             </ul>
@@ -394,7 +413,7 @@
     <script src="{{ url_for ('static', filename='js/google_drive.js' )}}"></script>
     <script type="text/javascript" src="https://apis.google.com/js/api.js?"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-	<script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
 
 
 

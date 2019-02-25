@@ -831,6 +831,10 @@ function saveSADFace(filename, filetype) {
     download(f, text);
 }
 
+function GoogleDriveSaveSADFace(filename, filetype) {
+    
+}
+
 function loadSADFace(file) {
     /*
     Create a read for a JSON file

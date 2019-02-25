@@ -16,7 +16,7 @@ var pickerApiLoaded = false;
 var oauthToken;
 
 // Use the Google API Loader script to load the google.picker script.
-function loadPicker() {
+function loadPicker() {        
 
     gapi.load('auth', {
         'callback': onAuthApiLoad
@@ -24,6 +24,8 @@ function loadPicker() {
     gapi.load('picker', {
         'callback': onPickerApiLoad
     });
+
+
 }
 
 function onAuthApiLoad() {
@@ -33,19 +35,16 @@ function onAuthApiLoad() {
             'immediate': false
         },
         handleAuthResult);
-		
-
 }
 
 function onPickerApiLoad() {
     pickerApiLoaded = true;
-    createPicker();
 }
 
 function handleAuthResult(authResult) {
     if (authResult && !authResult.error) {
         oauthToken = authResult.access_token;
-        createPicker();
+                createPicker();  
     }
 }
 
@@ -69,38 +68,37 @@ function createPicker() {
     }
 }
 
+function uploadToGoogle() {
+
+    var filename = document.getElementById("export_filename").value;
+    if (filename.length == 0) {
+        filename = "default"
+    }
+}
+
 // A simple callback implementation.
 function pickerCallback(data) {
 
     var googleSelectedFiles = new Array();
 
     if (data.action == google.picker.Action.PICKED) {
-        
-        var fileId = data.docs[0].id;
-		
-		console.log(fileId + " " + oauthToken);
-		
-		execute(function);
-		
-		
-		
-		//READ THIS - https://stackoverflow.com/questions/15589794/call-gapi-client-load-before-all-my-executions-correct
-		
-		//https://developers.google.com/drive/api/v2/reference/files/list#try-it
-		
-		//https://developers.google.com/drive/api/v3/reference/files/get?apix=true&apix_params=%7B%22fileId%22%3A%221-5VcLySn4QFR1LZFq16mgE8ZlKE3MEDa%22%7D#try-it
-	}
-}
 
-function execute(callback) {
-	
-	
-	return gapi.client.drive.files.get({
-		"fileId": fileId
-		})
-		.then(function(response) {
-			//Handle the results here (response.result has the parsed body)
-			console.log("Response", response);
-        },
-		function(err) { console.error("Execute error", err); });
+        var fileId = data.docs[0].id;
+
+        $.getJSON({
+            url: '/drive_download',
+            data: {
+                fileID: fileId
+            },
+            success: function (data) {
+
+                loadJSON(data);
+                var json = JSON.parse(data);
+                remove_all_tabs();
+                loadTabs(json.resources);
+
+
+            }
+        });
     }
+}

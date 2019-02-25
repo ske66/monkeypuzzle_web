@@ -19,6 +19,7 @@ function filemanager(operation, filetype, tab_id)
 		if ("json" == filetype) {
             var filename = document.getElementById("export_filename").value;
             if(filename.length == 0){ filename = "default"}
+
 			saveSADFace(filename, filetype);
 		}
 	}
@@ -51,6 +52,7 @@ function filemanager(operation, filetype, tab_id)
 				localStorage.setItem("state",result);
 				loadJSON(result);
 				var json = JSON.parse(result);
+                console.log(JSON.parse(result));
 				remove_all_tabs();
 				loadTabs(json.resources);
 			}
