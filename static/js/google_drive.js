@@ -68,17 +68,27 @@ function createPicker() {
     }
 }
 
-function uploadToGoogle() {
+		
+var textFile = null, makeTextFile = function (text) 
+	{
+		var data = new Blob([text], {type: 'text/plain'});
+			
+		if (textFile !== null) 
+		{
+			window.URL.revokeObjectURL(textFile);
+		}
+		
+		textFile = window.URL.createObjectURL(data);	
+		
+		
+		console.log(textFile);
 
-    var filename = document.getElementById("export_filename").value;
-    if (filename.length == 0) {
-        filename = "default"
-    }
-    
+		return textFile;
+	}
     
     //Can i save the file to memory then upload it to google drive through the python function drive_upload
     
-}
+
 
 // A simple callback implementation.
 function pickerCallback(data) {

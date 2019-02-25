@@ -76,15 +76,56 @@ def drive_download():
 @app.route('/drive_upload')
 def drive_upload():
 
-       # drive_service = build('drive', 'v3', credentials=getCredentials())
+    try:
+        SCOPES = ['https://www.googleapis.com/auth/drive']
+        ##this might need to be swapped out to work with google picker authentication
+        creds = None
+        if os.path.exists('token.pickle'):
+            with open('token.pickle', 'rb') as token:
+                creds = pickle.load(token)
+        # If there are no (valid) credentials available, let the user log in.
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file('client_secret.json', SCOPES)
+                creds = flow.run_local_server()
+            # Save the credentials for the next run
+            with open('token.pickle', 'wb') as token:
+                pickle.dump(creds, token)
+            
 
-   # file_metadata = {'name': filename}
-   # media = MediaFileUpload(filepath,
-    #                        mimetype=mimeType)
-   # file = drive_service.files().create(body=file_metadata,
-     #                                   media_body=media,
-    #                                    fields='id').execute()
-   # print('File ID: %s' % file.get('id'))
+        filepath = request.args.get("filepath")
+        filename = "test.json"
+        mimeType = "application/json"
+
+        drive_service = build('drive', 'v3', credentials=creds)
+
+        file_metadata = {'name': filename}
+        media = MediaFileUpload(filepath, mimetype=mimeType)
+        file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+        print('File ID: %s' % file.get('id'))
+
+    
+
+        return jsonify(jsonRead) #for testing purposes
+
+    except Exception as e:
+        return(str(e))
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
 
 
 

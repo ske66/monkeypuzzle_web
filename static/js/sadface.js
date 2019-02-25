@@ -831,10 +831,6 @@ function saveSADFace(filename, filetype) {
     download(f, text);
 }
 
-function GoogleDriveSaveSADFace(filename, filetype) {
-    
-}
-
 function loadSADFace(file) {
     /*
     Create a read for a JSON file
@@ -855,11 +851,35 @@ function download(filename, text) {
     var outfile = document.createElement("a");
     outfile.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
     outfile.setAttribute("download", filename);
+	
+	downloadURI = ("localhost:8000/data:text/plain;charset=utf-8," + encodeURIComponent(text))
+	
+	console.log(downloadURI);
 
+	
+	//AJAX CALL
+	
+	$.getJSON({
+            url: '/drive_upload',
+            data: {
+                filepath: downloadURI
+            },
+            success: function (data) {
+
+				console.log("fuck yeah motherfucker");
+                //loadJSON(data);
+                //var json = JSON.parse(data);
+                //remove_all_tabs();
+                //loadTabs(json.resources);
+
+
+            }
+        });
+	
     outfile.style.display = "none";
     document.body.appendChild(outfile);
 
-    outfile.click();
+    //outfile.click();
 
     document.body.removeChild(outfile);
 }

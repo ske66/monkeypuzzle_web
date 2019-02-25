@@ -42,24 +42,6 @@
             </ul>
         </section>
 
-        <script>
-            function textMethod() {
-
-                var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-
-                element.style.display = 'none';
-                document.body.appendChild(element);
-
-                element.click();
-
-                document.body.removeChild(element);
-
-            }
-
-        </script>
-
-
         <section class="menu-section">
             <h3 class="menu-section-title">Export</h3>
             <ul class="menu-section-list">
@@ -67,7 +49,7 @@
                     <div style="margin-left: 20px; margin-right: 60px;"><textarea id="export_filename" type="text" rows="1" cols="20" maxlength="20" style="resize: none;" class="form-control" placeholder="Filename" title="The name for the exported file"></textarea></div>
                 </li>
                 <li><a href="#" id="export_button"><button class="btn btn-default" onclick="download_sadface()" title="Export the current analysis to a SADFace formatted JSON document">SADFace</button></a></li>
-                <li><a href="#" id="drive_button"><button type="button" class="btn btn-default" onclick="uploadToGoogle()" title="Upload to Google Drive from MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
+                <li><a href="#" id="drive_button"><button type="button" class="btn btn-default" onclick="makeTextFile('hello')" title="Upload to Google Drive from MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
                     </a>
                 </li>
                 <li><a href="#" target="_blank" id="download_png"><button class="btn btn-default" title="Export the current analysis to a PNG image" onclick="download_png()">PNG</button></a></li>
