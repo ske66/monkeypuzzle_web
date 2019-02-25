@@ -74,6 +74,10 @@ function uploadToGoogle() {
     if (filename.length == 0) {
         filename = "default"
     }
+    
+    
+    //Can i save the file to memory then upload it to google drive through the python function drive_upload
+    
 }
 
 // A simple callback implementation.
