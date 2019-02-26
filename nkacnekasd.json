@@ -1,0 +1,98 @@
+{
+  "analyst_email": "Default Analyst Email",
+  "analyst_name": "Default Analyst Email",
+  "created": "2019-02-26T12:25:49",
+  "edges": [
+    {
+      "id": "a77bdf62-0902-4732-95a8-12613256978b",
+      "source_id": "712c9bf6-864c-46bd-a147-ce01a9be8c28",
+      "target_id": "b4601195-7db1-42bc-a344-81976416ba8a"
+    },
+    {
+      "id": "b59fa1d5-32fc-41d3-a51e-14cd9991390c",
+      "source_id": "b4601195-7db1-42bc-a344-81976416ba8a",
+      "target_id": "1055a379-4b3d-4d18-b01f-c13afc6302b0"
+    },
+    {
+      "id": "98f36d22-5782-432f-bf9f-18e41117abfa",
+      "source_id": "4fc23bb6-f0ea-444d-868f-5f641b5f7983",
+      "target_id": "20efdd1e-db04-4f16-a54d-22d4faf5de15"
+    },
+    {
+      "id": "fc4d6113-9b53-4839-9f0f-947d4f811872",
+      "source_id": "20efdd1e-db04-4f16-a54d-22d4faf5de15",
+      "target_id": "712c9bf6-864c-46bd-a147-ce01a9be8c28"
+    }
+  ],
+  "edited": "2019-02-26T17:26:15",
+  "id": "5fe47b39-ffdf-4e00-9e52-f2a4892b1697",
+  "metadata": {},
+  "nodes": [
+    {
+      "id": "1055a379-4b3d-4d18-b01f-c13afc6302b0",
+      "type": "atom",
+      "text": "I argue that there is absolutely nothing morally reprehensible about a sexual transaction, as long as the following rules are met",
+      "sources": [
+        {
+          "resource_id": "web_iframe",
+          "text": "I argue that there is absolutely nothing morally reprehensible about a sexual transaction, as long as the following rules are met",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "712c9bf6-864c-46bd-a147-ce01a9be8c28",
+      "type": "atom",
+      "text": "Both parties consent to the transaction",
+      "sources": [
+        {
+          "resource_id": "web_iframe",
+          "text": "Both parties consent to the transaction",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "b4601195-7db1-42bc-a344-81976416ba8a",
+      "type": "scheme",
+      "name": "Default Support"
+    },
+    {
+      "id": "4fc23bb6-f0ea-444d-868f-5f641b5f7983",
+      "type": "atom",
+      "text": "hello world",
+      "sources": [
+        {
+          "resource_id": "2207c7fa-e97d-415f-97aa-285ef01a8757",
+          "text": "hello world",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "20efdd1e-db04-4f16-a54d-22d4faf5de15",
+      "type": "scheme",
+      "name": "Default Support"
+    }
+  ],
+  "resources": [
+    {
+      "id": "2207c7fa-e97d-415f-97aa-285ef01a8757",
+      "content": "hello world",
+      "type": "text",
+      "metadata": {}
+    },
+    {
+      "id": "c3621d02-4f53-4700-ba42-e941951aa246",
+      "content": " ",
+      "type": "text",
+      "metadata": {}
+    }
+  ]
+}

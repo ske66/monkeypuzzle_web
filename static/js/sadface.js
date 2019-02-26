@@ -808,7 +808,7 @@ function prettyprint(doc) {
     return JSON.stringify(string, null, 2);
 }
 
-function saveSADFace(filename, filetype) {
+function saveSADFace(filename, filetype, drive_upload) {
     /*
     Write the prettyprinted SADFace document to a JSON file and download
     */
@@ -833,30 +833,11 @@ function saveSADFace(filename, filetype) {
     }
 	
 	
-	if (test == true)
+	if (drive_upload == 'true')
 	{
-		var blob = new Blob([text], {type : 'application/json'});
-		var url = URL.createObjectURL(blob);
-		
-		//AJAX CALL
-	
-	$.getJSON({
-            url: '/drive_upload',
-            data: {
-                filepath: url
-            },
-            success: function (data) {
-
-				console.log("fuck yeah motherfucker");
-
-            }
-        });
-		
-		
-		
-		
-		console.log(url);
-	}
+        loadPicker("upload", f, text);     
+    }
+    
 	else
 	{
 		download(f, text);
@@ -887,11 +868,6 @@ function download(filename, text) {
 	
 	downloadURI = ("data:text/plain;charset=utf-8," + encodeURIComponent(text));
 	localStorage.setItem(filename, text);
-	
-	
-	
-
-	
 	
 	
     outfile.style.display = "none";

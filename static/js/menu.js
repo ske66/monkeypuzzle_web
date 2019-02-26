@@ -17,9 +17,17 @@ $(".toggle-button").click(function() {
     toggle_menu();
 });
 
-function download_sadface()
+function download_sadface(type)
 {
-    filemanager('save','json',null)
+        
+    if (type == 'false') //not being uploaded to google drive
+    {
+        filemanager('save','json',null, 'false')
+    }
+    else // being uploaded to google drive
+    {
+        filemanager('save','json',null, 'true')
+    }
 }
 
 function download_png()

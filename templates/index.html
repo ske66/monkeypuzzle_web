@@ -48,11 +48,12 @@
                 <li>
                     <div style="margin-left: 20px; margin-right: 60px;"><textarea id="export_filename" type="text" rows="1" cols="20" maxlength="20" style="resize: none;" class="form-control" placeholder="Filename" title="The name for the exported file"></textarea></div>
                 </li>
-                <li><a href="#" id="export_button"><button class="btn btn-default" onclick="download_sadface()" title="Export the current analysis to a SADFace formatted JSON document">SADFace</button></a></li>
-                <li><a href="#" id="drive_button"><button type="button" class="btn btn-default" onclick="makeTextFile('hello')" title="Upload to Google Drive from MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
-                    </a>
-                </li>
+                <li><a href="#" id="export_button"><button class="btn btn-default" onclick="download_sadface('false')" title="Export the current analysis to a SADFace formatted JSON document">SADFace</button></a></li>
+                
+                <li><a href="#" id="drive_button"><button type="button" class="btn btn-default" onclick="download_sadface('true')" title="Upload to Google Drive from MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button></a></li>
+                
                 <li><a href="#" target="_blank" id="download_png"><button class="btn btn-default" title="Export the current analysis to a PNG image" onclick="download_png()">PNG</button></a></li>
+                
                 <li><a href="#" target="_blank" id="download_jpg"><button class="btn btn-default" title="Export the current analysis to a JPG image" onclick="download_jpg()">JPG</button></a></li>
             </ul>
         </section>
@@ -66,7 +67,7 @@
                         <div display="inline-block">
                             <input id="loadJSON" style="display:none;" accept=".json" role="button" tabindex="-1000" type="file" class="upload-button" onchange="filemanager('load','json',null,null,null)">
                             <input type="button" class="btn btn-default" value="SADFace" onclick="document.getElementById('loadJSON').click();" title="Load a SADFace formatted JSON document into MonkeyPuzzle" />
-                            <button type="button" class="btn btn-default" onclick="loadPicker()" title="Load from Google Drive into MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
+                            <button type="button" class="btn btn-default" onclick="loadPicker('download', null, null)" title="Load from Google Drive into MonkeyPuzzle"><i class="fab fa-google-drive"></i> Drive</button>
                         </div>
                     </a>
                 </span>
@@ -362,10 +363,25 @@
             </div>
         </div>
     </div>
-
-
-
-
+    
+    
+    
+    <div class="modal fade" id="drive_modal" role="dialog" tabindex='-1'>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Upload Successful</h4>
+                </div>
+                <div class="modal-body">
+                    <p>SADFace File saved to Google Drive Successfully</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Dismiss</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--
     JS Libraries

@@ -4,6 +4,7 @@ import sys, requests, mimetypes
 import pickle
 import io
 import os.path
+import os
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -23,6 +24,7 @@ def Proxy():
         address = request.args.get("txtAddress")
 
         newaddress = address.replace('www.', 'https://', 1)
+        #this needs to be improved before testing
         resp = requests.get(newaddress)
         return jsonify(result=resp.text)
 
@@ -67,7 +69,7 @@ def drive_download():
             json = fh.read()
             jsonRead = json.decode('utf-8') #decode from bytes into string
 
-        return jsonify(jsonRead) #for testing purposes
+        return jsonify(jsonRead)
 
     except Exception as e:
         return(str(e))
@@ -93,39 +95,33 @@ def drive_upload():
             # Save the credentials for the next run
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
-            
 
-        filepath = "HOW_TO.txt"  #request.args.get("filepath")
-        filename = "test.txt"
-        mimeType = "text/plain"
+                    
+        filecontent = request.args.get("filecontent")
+        folder_id = request.args.get("folder_id")
+        filename = request.args.get("filename")
+        mimeType = "application/json"
 
+        f = open(filename, 'w')
+        f.write(filecontent)
+        f.close()
+
+        #Create a new file using the filepath as the content
         drive_service = build('drive', 'v3', credentials=creds)
-
-        file_metadata = {'name': filename}
-        media = MediaFileUpload(filepath, mimetype=mimeType)
+        
+        #send file
+        file_metadata = {'name': filename,
+                         'parents':[folder_id]}
+        media = MediaFileUpload(filename, mimetype=mimeType)
         file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
         print('File ID: %s' % file.get('id'))
+        
+        #delete file
 
+        return jsonify("success")
     
-
-        return jsonify("Good") #for testing purposes
-
     except Exception as e:
         return(str(e))
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
 
 
 

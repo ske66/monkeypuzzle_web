@@ -1,5 +1,5 @@
-function filemanager(operation, filetype, tab_id) 
-{
+function filemanager(operation, filetype, tab_id, drive_upload) 
+{    
 	/*
 	Write text from tab to file or does a SADFace save operation
 	*/
@@ -20,7 +20,14 @@ function filemanager(operation, filetype, tab_id)
             var filename = document.getElementById("export_filename").value;
             if(filename.length == 0){ filename = "default"}
 
-			saveSADFace(filename, filetype);
+            if (drive_upload == 'true')
+            {
+                saveSADFace(filename, filetype, drive_upload);
+            }
+            else
+            {
+                saveSADFace(filename, filetype, drive_upload);
+            }
 		}
 	}
 	
