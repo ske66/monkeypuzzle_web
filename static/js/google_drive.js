@@ -53,6 +53,7 @@ function onPickerApiLoad() {
 function handleAuthResult(authResult) {
     if (authResult && !authResult.error) {
         oauthToken = authResult.access_token;
+        console.log(oauthToken);
         
         if (type == "upload")
             {
@@ -115,13 +116,11 @@ function uploadPickerCallback(data){
         
     if (data.action == google.picker.Action.PICKED) {
         folderID = data.docs[0].id;
-        
-        console.log(folderID)
-        
+                
         $.getJSON({
             url: '/drive_upload',
             data: {
-                filecontent: filecontent, filename: filename, folder_id: folderID
+                filecontent: filecontent, filename: filename, folder_id: folderID, authToken: oauthToken
             },
             success: function (data) {
 
@@ -149,7 +148,8 @@ function downloadPickerCallback(data) {
         $.getJSON({
             url: '/drive_download',
             data: {
-                fileID: fileId
+                fileID: fileId, authToken: oauthToken
+
             },
             success: function (data) {
 

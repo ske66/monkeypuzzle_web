@@ -13,9 +13,35 @@ from google.auth.transport.requests import Request
 app = Flask(__name__)
 app.secret_key = 'some secret key'
 
+SCOPES = ['https://www.googleapis.com/auth/drive']
+CLIENT_SECRET_FILE = 'client_secret.json'
+
+
 @app.route('/')
 def start():
+
     return render_template('index.html')
+
+
+def credentials():
+    #this might need to be swapped out to work with google picker authentication
+
+    creds = None
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
+            creds = flow.run_local_server()
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+    return creds
+
 
 @app.route('/Proxy')
 def Proxy():
@@ -34,29 +60,12 @@ def Proxy():
 
 @app.route('/drive_download')
 def drive_download():
-
     try:
 
-        SCOPES = ['https://www.googleapis.com/auth/drive']
-        ##this might need to be swapped out to work with google picker authentication
-        creds = None
-        if os.path.exists('token.pickle'):
-            with open('token.pickle', 'rb') as token:
-                creds = pickle.load(token)
-        # If there are no (valid) credentials available, let the user log in.
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file('client_secret.json', SCOPES)
-                creds = flow.run_local_server()
-            # Save the credentials for the next run
-            with open('token.pickle', 'wb') as token:
-                pickle.dump(creds, token)
-            
+        oauth_token = request.args.get("authToken")
         file_id = request.args.get("fileID")
 
-        drive_service = build('drive', 'v3', credentials=creds)
+        drive_service = build('drive', 'v3', credentials=credentials())
 
         requests = drive_service.files().get_media(fileId = file_id)
         fh = io.BytesIO()
@@ -77,46 +86,31 @@ def drive_download():
 
 @app.route('/drive_upload')
 def drive_upload():
-
     try:
-        SCOPES = ['https://www.googleapis.com/auth/drive']
-        ##this might need to be swapped out to work with google picker authentication
-        creds = None
-        if os.path.exists('token.pickle'):
-            with open('token.pickle', 'rb') as token:
-                creds = pickle.load(token)
-        # If there are no (valid) credentials available, let the user log in.
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file('client_secret.json', SCOPES)
-                creds = flow.run_local_server()
-            # Save the credentials for the next run
-            with open('token.pickle', 'wb') as token:
-                pickle.dump(creds, token)
 
-                    
-        filecontent = request.args.get("filecontent")
+        oauth_token = request.args.get("authToken")
+        file_content = request.args.get("filecontent")
         folder_id = request.args.get("folder_id")
-        filename = request.args.get("filename")
-        mimeType = "application/json"
+        file_name = request.args.get("filename")
+        mime_type = "application/json"
 
-        f = open(filename, 'w')
-        f.write(filecontent)
-        f.close()
+        with open(file_name, 'w') as f:
+            f.write(file_content)
+            f.close()
+
 
         #Create a new file using the filepath as the content
-        drive_service = build('drive', 'v3', credentials=creds)
-        
+        drive_service = build('drive', 'v3', credentials=credentials())
+
         #send file
-        file_metadata = {'name': filename,
-                         'parents':[folder_id]}
-        media = MediaFileUpload(filename, mimetype=mimeType)
+        file_metadata = {'name': file_name,
+                        'parents':[folder_id]}
+        media = MediaFileUpload(file_name, mimetype=mime_type)
         file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
         print('File ID: %s' % file.get('id'))
         
         #delete file
+        os.remove(file_name)
 
         return jsonify("success")
     
@@ -126,4 +120,4 @@ def drive_upload():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', port=8000,  debug=True)
