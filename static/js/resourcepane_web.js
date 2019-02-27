@@ -23,21 +23,6 @@ function add_web_resource_body(tab_id) {
                     <label>Website Address</label>
                     <input type="text" id="webAddress_` + tab_id + `" name="txtAddress" rows="1" style="resize: none;" class="form-control" placeholder="Address of chosen website...">
                     <label>Content</label>
-                <style>
-				div#loading {
-    top: 200 px;
-    margin: auto;
-    position: absolute;
-    z-index: 1000;
-    width: 160px;
-    height: 24px;
-    background: url(loadingimage.gif) no-repeat;
-    cursor: wait;
-    }
-				
-				
-				
-				</style>
                     <iframe id="web_iframe" class="form-control" src="" style="min-height:70vh;"><div id="loading"></div>
 </iframe>
                 </div>
