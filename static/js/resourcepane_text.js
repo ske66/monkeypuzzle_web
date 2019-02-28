@@ -1,4 +1,5 @@
 function add_text_resource_body(tab_id) {
+        
     var tab_body = $(`
         <div id="` + tab_id + `_body" class="resource_pane_tab_content">
             <form>

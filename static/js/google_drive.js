@@ -149,7 +149,6 @@ function downloadPickerCallback(data) {
             url: '/drive_download',
             data: {
                 fileID: fileId, authToken: oauthToken
-
             },
             success: function (data) {
 

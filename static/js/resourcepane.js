@@ -17,12 +17,16 @@ function add_tab(load_id = null) {
 
     var resource_type_idx = document.getElementById("resource_type").options.selectedIndex;
     var resource_type_txt = document.getElementById("resource_type").options[resource_type_idx].text;
-    if (resource_type_txt.toLowerCase() === "text") {
+    
+    if (resource_type_txt.toLowerCase() === "text") 
+    {
         add_text_resource_body(tab_id);
-    } else if (resource_type_txt.toLowerCase() === "web") {
+    } 
+    else if (resource_type_txt.toLowerCase() === "web") 
+    {
         add_web_resource_body(tab_id);
     }
-
+    
     set_active_tab(tab_id + "_body");
     return tab_id
 }
@@ -45,8 +49,7 @@ function load_tab(resource) {
         add_tab(tab_id);
         set_text_resource_title(tab_id, resource.metadata.title);
         set_text_resource_content(tab_id, resource.content);
-        set_web_resource_title(tab_id, resource.metadata.title);
-        set_web_resource_content(tab_id, resource.content);
+        set_web_resource_address(tab_id, resource.metadata.title);
     }
 }
 
@@ -74,35 +77,6 @@ function remove_tab() {
         set_active_tab(current_tab + "_body");
     }
 }
-
-function web_search() {
-
-
-    /* REMOVE VALIDATION */
-
-    var btnProxy = $("#btnProxy");
-
-    //RUNS PROXY SCRIPT
-        btnProxy.bind('click', function() {
-            $.getJSON('/Proxy', {
-                txtAddress: $('input[name="txtAddress"]').val(),
-            }, function(data) {
-                $("#web_iframe").attr('srcdoc', data.result);
-            btnProxy.unbind("click");
-            });
-            return false;
-        });
-
-}
-
-
-function refresh() {
-    var newURL = document.getElementById('website_url').value;
-    var showSite = document.getElementsByName('proxy_window')[0];
-    showSite.src = newURL;
-
-}
-
 
 function remove_all_tabs() {
     var i = 0;

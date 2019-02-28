@@ -43,15 +43,20 @@ def credentials():
     return creds
 
 
-@app.route('/Proxy')
-def Proxy():
+@app.route('/proxy')
+def proxy():
     
     try:
         address = request.args.get("txtAddress")
 
-        newaddress = address.replace('www.', 'https://', 1)
+
+
+
+
+        new_address = address.replace('www.', 'https://', 1)
+        
         #this needs to be improved before testing
-        resp = requests.get(newaddress)
+        resp = requests.get(new_address)
         return jsonify(result=resp.text)
 
     except Exception as e:
@@ -67,7 +72,7 @@ def drive_download():
 
         drive_service = build('drive', 'v3', credentials=credentials())
 
-        requests = drive_service.files().get_media(fileId = file_id)
+        requests = drive_service.files().get_media(fileId=file_id)
         fh = io.BytesIO()
         downloader = MediaIoBaseDownload(fh, requests)
         done = False
@@ -76,9 +81,9 @@ def drive_download():
             print("Download %d%%." % int(status.progress() * 100), file=sys.stderr)
             fh.seek(0)
             json = fh.read()
-            jsonRead = json.decode('utf-8') #decode from bytes into string
+            json_read = json.decode('utf-8') #decode from bytes into string
 
-        return jsonify(jsonRead)
+        return jsonify(json_read)
 
     except Exception as e:
         return(str(e))

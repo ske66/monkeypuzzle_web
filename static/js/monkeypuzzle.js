@@ -385,6 +385,7 @@ function loadJSON(json_value) {
     //load any sources in the stored diagram state
     window.onload = function () {
         loadTabs(json.resources);
+        console.log(json.resources);
     };
     cy_data = export_cytoscape(json);
     if(cy !== null)
@@ -459,7 +460,7 @@ function get_selected_text() {
 
 function get_selected_web_text(){
     var selected_text = undefined;
-    var selected_iframe = document.getElementById("web_iframe");
+    var selected_iframe = document.getElementById("webIframe_"+tab_id);
     var iwin = selected_iframe.contentWindow || selected_iframe.contentDocument.defaultView;
     if (iwin.getSelection().toString().length > 0) 
     {
@@ -469,7 +470,7 @@ function get_selected_web_text(){
         return selected_text;
     }
 	web_text = false;
-
+    //return null;
 }
 
 
@@ -487,7 +488,7 @@ function clear_selection() {
 }
 
 function clear_web_selection() {
-    var iframe_window = document.getElementById("web_iframe");
+    var iframe_window = document.getElementById("webIframe_"+tab_id);
     var docWindow = iframe_window.contentDocument || iframe_window.contentWindow.document;
     if (docWindow.getSelection){
         if (docWindow.getSelection().empty){
