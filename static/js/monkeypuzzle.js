@@ -380,12 +380,15 @@ function build_cola_layout( opts ) {
 
 function loadJSON(json_value) {
     json = import_json(json_value);
+
     localStorage.setItem("state",JSON.stringify(get_sd()));
     current_sadface_doc = JSON.stringify(get_sd());
+    
     //load any sources in the stored diagram state
     window.onload = function () {
+        
+        //loadTabs causing the issue?
         loadTabs(json.resources);
-        console.log(json.resources);
     };
     cy_data = export_cytoscape(json);
     if(cy !== null)
@@ -521,7 +524,7 @@ function update_local_storage() {
     cm.showMenuItem("undo");
     cm.hideMenuItem("redo");
     localStorage.setItem("state", JSON.stringify(get_sd()));
-    current_sadface_doc = JSON.stringify(get_sd());
+    current_sadface_doc = JSON.stringify(get_sd());    
     update();
 }
 

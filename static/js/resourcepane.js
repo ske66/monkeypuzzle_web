@@ -1,32 +1,45 @@
 var current_tab = 0;
 var last_number = 1;
 var tabs = [];
-var web_history = [];
 
 function add_tab(load_id = null) {
-    if (load_id == null) {
-        var new_resource = add_resource(' ');
-        tab_id = new_resource.id;
-        add_resource_metadata(tab_id, 'title', '');
-        localStorage.setItem("state", JSON.stringify(get_sd()));
-    } else {
-        tab_id = load_id;
-    }
 
-    add_resource_header();
+    //issue is coming from here
 
     var resource_type_idx = document.getElementById("resource_type").options.selectedIndex;
     var resource_type_txt = document.getElementById("resource_type").options[resource_type_idx].text;
-    
-    if (resource_type_txt.toLowerCase() === "text") 
-    {
-        add_text_resource_body(tab_id);
-    } 
-    else if (resource_type_txt.toLowerCase() === "web") 
-    {
-        add_web_resource_body(tab_id);
+
+    if (load_id == null) {
+
+        //new resource with type argument dependent on menu selection
+        var new_resource = add_resource(' ', resource_type_txt.toLowerCase());
+        tab_id = new_resource.id;
+        add_resource_metadata(tab_id, 'title', '');
+        localStorage.setItem("state", JSON.stringify(get_sd()));
+        
+        console.log(new_resource.type);
+
+        if (new_resource.type === "text") {
+            add_text_resource_body(tab_id);
+        }
+        if (new_resource.type === "web") {
+            add_web_resource_body(tab_id);
+        }
+
+    } else {
+        tab_id = load_id;
+        var resource = get_resource(load_id);
+        
+        if (resource.type === "text")
+            {
+                add_text_resource_body(tab_id);
+            }
+        if(resource.type === "web")
+            {
+                add_web_resource_body(tab_id);
+            }
     }
-    
+    add_resource_header();
     set_active_tab(tab_id + "_body");
     return tab_id
 }
@@ -47,9 +60,14 @@ function load_tab(resource) {
     if (resource != null) {
         var tab_id = resource.id;
         add_tab(tab_id);
-        set_text_resource_title(tab_id, resource.metadata.title);
-        set_text_resource_content(tab_id, resource.content);
-        set_web_resource_address(tab_id, resource.metadata.title);
+        if (resource.type === "text") {
+            set_text_resource_title(tab_id, resource.metadata.title);
+            set_text_resource_content(tab_id, resource.content);
+        }
+        if (resource.type === "web") {
+            set_web_resource_address(tab_id, resource.metadata.title);
+            set_web_resource_content(tab_id, resource.content);
+        }
     }
 }
 

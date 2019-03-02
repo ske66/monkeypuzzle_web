@@ -17,21 +17,6 @@ mt.bind("d", function() {
     selected = [];
 });
 
-// new binding for enter key
-/* 
- mt.bind("enter", function() {
-    if web_resource_panel[id_number].isFocused()
-    run btnSearch[id_number] onClickMethod
- })
- 
- 
-
-
-
-*/
-
-
-
 mt.bind("f", function() { console.log("FIX NODE PLACEMENT"); });
 mt.bind("h", function() { $("#help_modal").modal("show"); });
 mt.bind("m", function() { toggle_menu(); });

@@ -40,11 +40,13 @@ function add_text_resource_body(tab_id) {
 function set_text_resource_title(tab_id, title){
     update_resource(tab_id, null, title);
     update_local_storage();
+    if (title != undefined || null) { document.getElementById('title_'+tab_id).value = title; }
 }
 
 function set_text_resource_content(tab_id, text){
     update_resource(tab_id, text, null);
     update_local_storage();
+    if (text != undefined || null) { document.getElementById(tab_id).value = text; }
 }
 
 function change_title(tab_id) {
@@ -56,6 +58,9 @@ function change_textarea(tab_id) {
     var text = document.getElementById(tab_id).value;
     set_text_resource_content(tab_id, text)
 }
+
+
+
 
 function new_atom_txt_resource_button() {   
     if(focused != null || focused != undefined){

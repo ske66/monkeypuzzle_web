@@ -189,7 +189,7 @@ function add_atom_metadata(atom_id, key, value) {
     }
 }
 
-function add_resource(content) {
+function add_resource(content, type) {
     /*
     Create a new resource dict using the supplied content string
     then add to the resourses list of the sadface doc
@@ -197,7 +197,7 @@ function add_resource(content) {
     Returns: the new resource dict
     */
     if (content) {
-        var res = new_resource(content);
+        var res = new_resource(content,type);
         sd.resources.push(res);
         return res;
     }
@@ -712,7 +712,7 @@ function new_sadface() {
     return new_doc;
 }
 
-function new_resource(content) {
+function new_resource(content,type) {
     /*
     Given the supplied content (String), create a new resource dict
 
@@ -730,8 +730,8 @@ function new_resource(content) {
 
     Returns: A dict representing the new SADFace resource
     */
-    if (content) {
-        var new_resource = {"id":new_uuid(), "content":content, "type":"text", "metadata":{}};
+    if (content && type) {
+        var new_resource = {"id":new_uuid(), "content":content, "type":type, "metadata":{}};
         return new_resource;
     }
 }
@@ -835,6 +835,7 @@ function saveSADFace(filename, filetype, drive_upload) {
 	
 	if (drive_upload == 'true')
 	{
+        //loadGooglePicker
         loadPicker("upload", f, text);     
     }
     
@@ -1009,7 +1010,7 @@ function update_resource(resource_id, content, title) {
             }
             sd.resources.forEach((res) => {
                 if(res.id === resource_id) {
-                    res = resource;
+                    res = resource; 
                 }
             });
         } else {
