@@ -16,6 +16,8 @@ app.secret_key = 'some secret key'
 SCOPES = ['https://www.googleapis.com/auth/drive']
 CLIENT_SECRET_FILE = 'client_secret.json'
 
+#reddit = praw.Reddit(client_id='T1HvLzIfJ2WGOA', client_secret='hLnHHaSwXWRwEiXoJVXfRMedh7g', username='MonkeyPuzzle_web', password='Woodcot1', user_agent='MonkeyPuzzlePrawv1')
+
 
 @app.route('/')
 def start():
@@ -45,13 +47,16 @@ def credentials():
 
 @app.route('/proxy')
 def proxy():
+
+    #this is required because the default user-agent will result in the reddit blocking the connection.
+    headers = {'User-Agent': 'MonkeyPuzzle_Web_v1'}
     
     try:
         address = request.args.get("txtAddress")
         new_address = address.replace('www.', 'https://', 1)
 
         #this needs to be improved before testing
-        resp = requests.get(new_address)
+        resp = requests.get(new_address, headers=headers)
         return jsonify(result=resp.text)
 
     except Exception as e:

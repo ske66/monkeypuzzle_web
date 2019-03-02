@@ -24,6 +24,7 @@ function add_web_resource_body(tab_id) {
                     <input type="text" id="webAddress_` + tab_id + `" name="txtAddress_` + tab_id + `" rows="1" style="resize: none;" class="form-control" onchange="change_address('` + tab_id + `')" placeholder="Address of chosen website...">
                     <label>Content</label>
                     <iframe id="webIframe_` + tab_id + `" class="form-control" style="min-height:70vh;"><div id="loading"></div></iframe>
+                    <div class="btn btn-primary" id="btnWeb_` + tab_id + `" onclick="set_web_resource_address">Search</div>
                 </div>
             </div>
         </form>
@@ -35,9 +36,8 @@ function add_web_resource_body(tab_id) {
     
     //BE IDEAL TO TURN THIS INTO MOUSETRAP
 $(function() {
-    $("#webAddress_" + tab_id).keypress(function (e) {
+    $("#webAddress_" + tab_id).keydown(function (e) {
         if(e.which == 13) {
-
             change_address(tab_id);
             $("#webAddress_" + tab_id).blur();
             e.preventDefault();
@@ -48,12 +48,14 @@ $(function() {
 }
 
 
+
 function set_web_resource_address(tab_id, title) {
-    update_resource(tab_id, null, title);
-    update_local_storage();
     if (title != undefined || null) {
+        console.log("Set Web Resource: " + title, tab_id);
+        update_resource(tab_id, null, title);
+        update_local_storage();
         document.getElementById('webAddress_' + tab_id).value = title;
-        web_search(title);
+        web_search(tab_id, title);
     }
 }
 
@@ -63,16 +65,15 @@ function set_web_resource_content(tab_id, content) {
 }
 
 function change_address(tab_id) {
-    var address = document.getElementById("webAddress_" + tab_id).value;
-    set_web_resource_address(tab_id, address)
-    web_search(address);
+    var title = document.getElementById("webAddress_" + tab_id).value;
+    set_web_resource_address(tab_id, title)
 }
 
 
-function web_search(address) {
-
+function web_search(tab_id, title) {
+console.log("Web Search: " + title, tab_id);
     $.getJSON('/proxy', {
-        txtAddress: address
+        txtAddress: title
     }, function (data) {
         $("#webIframe_" + tab_id).attr('srcdoc', data.result);
     });

@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbe529f4-03a7-4351-bd2a-7103e3e681ff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HOW_TO.txt" beforeDir="false" afterPath="$PROJECT_DIR$/HOW_TO.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/keyboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/keyboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/monkeypuzzle.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/monkeypuzzle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/resourcepane.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/resourcepane.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/resourcepane_text.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/resourcepane_text.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/resourcepane_web.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/resourcepane_web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/sadface.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/sadface.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,12 +29,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1515" />
+          <entry key="py" value="1922" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1515" />
+          <entry key="Python" value="1922" />
         </counts>
       </usages-collector>
     </session>
@@ -49,11 +44,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+            <state relative-caret-position="261">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-                <marker date="1551451413316" expanded="true" signature="2534:2535" ph="..." />
+                <marker date="1551518577575" expanded="true" signature="2887:2888" ph="..." />
               </folding>
             </state>
           </provider>
@@ -78,8 +73,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="295" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="117" />
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="964" />
@@ -253,8 +248,7 @@
     <option name="totallyTimeSpent" value="5652000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="964" extended-state="6" />
-    <editor active="true" />
+    <frame x="117" y="23" width="1920" height="964" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1263823" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -290,11 +284,11 @@
     <entry file="file://$PROJECT_DIR$/../proxytest.py" />
     <entry file="file://$PROJECT_DIR$/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+        <state relative-caret-position="261">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1551451413316" expanded="true" signature="2534:2535" ph="..." />
+            <marker date="1551518577575" expanded="true" signature="2887:2888" ph="..." />
           </folding>
         </state>
       </provider>
