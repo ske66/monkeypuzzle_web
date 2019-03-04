@@ -4,8 +4,6 @@ var tabs = [];
 
 function add_tab(load_id = null) {
 
-    //issue is coming from here
-
     var resource_type_idx = document.getElementById("resource_type").options.selectedIndex;
     var resource_type_txt = document.getElementById("resource_type").options[resource_type_idx].text;
 
@@ -17,7 +15,7 @@ function add_tab(load_id = null) {
         add_resource_metadata(tab_id, 'title', '');
         localStorage.setItem("state", JSON.stringify(get_sd()));
         
-        console.log(new_resource.type);
+        console.log(new_resource);
 
         if (new_resource.type === "text") {
             add_text_resource_body(tab_id);
@@ -28,16 +26,17 @@ function add_tab(load_id = null) {
 
     } else {
         tab_id = load_id;
-        var resource = get_resource(load_id);
+        var resource = get_resource(tab_id);
         
-        if (resource.type === "text")
-            {
-                add_text_resource_body(tab_id);
-            }
-        if(resource.type === "web")
-            {
-                add_web_resource_body(tab_id);
-            }
+        if (resource.type === "text") {
+            add_text_resource_body(tab_id);
+        }
+        if (resource.type === "web") {
+            add_web_resource_body(tab_id);
+        }
+        
+        
+        
     }
     add_resource_header();
     set_active_tab(tab_id + "_body");
@@ -67,6 +66,7 @@ function load_tab(resource) {
         if (resource.type === "web") {
             set_web_resource_address(tab_id, resource.metadata.title);
             set_web_resource_content(tab_id, resource.content);
+            
         }
     }
 }

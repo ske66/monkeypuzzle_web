@@ -54,10 +54,13 @@ def proxy():
     try:
         address = request.args.get("txtAddress")
         new_address = address.replace('www.', 'https://', 1)
+        
+        resp = requests.get(new_address, headers=headers)
+
+        return jsonify(result=resp.text)
 
         #this needs to be improved before testing
-        resp = requests.get(new_address, headers=headers)
-        return jsonify(result=resp.text)
+ 
 
     except Exception as e:
         return(str(e))

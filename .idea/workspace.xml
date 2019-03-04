@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbe529f4-03a7-4351-bd2a-7103e3e681ff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/HOW_TO.txt" beforeDir="false" afterPath="$PROJECT_DIR$/HOW_TO.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/resourcepane_web.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/resourcepane_web.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +20,7 @@
     <session id="-1032872031">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.68" value="1" />
           <entry key="project.opened" value="2" />
@@ -44,11 +43,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="96">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-                <marker date="1551518577575" expanded="true" signature="2887:2888" ph="..." />
+                <marker date="1551532198429" expanded="true" signature="2887:2888" ph="..." />
               </folding>
             </state>
           </provider>
@@ -249,13 +248,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="117" y="23" width="1920" height="964" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1263823" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33027524" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33027524" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -284,11 +284,11 @@
     <entry file="file://$PROJECT_DIR$/../proxytest.py" />
     <entry file="file://$PROJECT_DIR$/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        <state relative-caret-position="96">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1551518577575" expanded="true" signature="2887:2888" ph="..." />
+            <marker date="1551532198429" expanded="true" signature="2887:2888" ph="..." />
           </folding>
         </state>
       </provider>

@@ -24,7 +24,7 @@ function add_web_resource_body(tab_id) {
                     <input type="text" id="webAddress_` + tab_id + `" name="txtAddress_` + tab_id + `" rows="1" style="resize: none;" class="form-control" onchange="change_address('` + tab_id + `')" placeholder="Address of chosen website...">
                     <label>Content</label>
                     <iframe id="webIframe_` + tab_id + `" class="form-control" style="min-height:70vh;"><div id="loading"></div></iframe>
-                    <div class="btn btn-primary" id="btnWeb_` + tab_id + `" onclick="set_web_resource_address">Search</div>
+                    <div class="btn btn-primary" id="btnWeb_` + tab_id + `" onclick="change_address(tab_id)">Search</div>
                 </div>
             </div>
         </form>
@@ -44,14 +44,12 @@ $(function() {
         }
     });
 });
+    
 
 }
 
-
-
 function set_web_resource_address(tab_id, title) {
     if (title != undefined || null) {
-        console.log("Set Web Resource: " + title, tab_id);
         update_resource(tab_id, null, title);
         update_local_storage();
         document.getElementById('webAddress_' + tab_id).value = title;
@@ -71,7 +69,6 @@ function change_address(tab_id) {
 
 
 function web_search(tab_id, title) {
-console.log("Web Search: " + title, tab_id);
     $.getJSON('/proxy', {
         txtAddress: title
     }, function (data) {
@@ -79,6 +76,19 @@ console.log("Web Search: " + title, tab_id);
     });
     return false;
 }
+
+
+
+function page_redirection(tab_id) {
+    //this script will get the href of a selected element and check to see if it is redirectable, if so, a request is sent to FLASK and a web page is returned
+    
+    
+    
+    //set_web_resource_address(tab_id, title)
+}
+
+
+
 
 function new_atom_web_resource_button() {
 
