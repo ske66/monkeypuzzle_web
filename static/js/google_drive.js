@@ -111,21 +111,28 @@ function uploadPickerCallback(data){
         
     if (data.action == google.picker.Action.PICKED) {
         folderID = data.docs[0].id;
-                
-        $.getJSON({
-            url: '/drive_upload',
-            data: {
-                filecontent: filecontent, filename: filename, folder_id: folderID, authToken: oauthToken
-            },
-            success: function (data) {
-
-				console.log("working");
-                
-                $('#drive_modal').modal('show');
-
-            }
-        });
-        
+		
+		
+		var file = new Blob([filecontent], {type: 'application/json'});
+		var metadata = {
+			'name': filename,
+			'mimeType': 'application/json',
+			'parents': [folderID],
+		};
+		
+		var form =  new FormData();
+		form.append('metadata', new Blob([JSON.stringify(metadata)], {type: 'application/json'}));
+		form.append('file', file);
+		
+		fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
+			method: 'POST',
+			headers: new Headers({ 'Authorization': 'Bearer ' + oauthToken }),
+			body: form,
+		}).then((res) => {
+			return res.json();
+		}).then(function(val) {
+			console.log(val);
+		}); 
     }
         
 }
