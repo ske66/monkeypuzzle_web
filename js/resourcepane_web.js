@@ -69,12 +69,21 @@ function change_address(tab_id) {
 
 
 function web_search(tab_id, title) {
+	
+	
+	$.getJSON('https://soc-web-liv-38.napier.ac.uk/api/v1/proxy?address=' + title, function(data){
+    $("#webIframe_" + tab_id).attr('srcdoc', data.result);
+});
+	
+	/*
     $.getJSON('/proxy', {
         txtAddress: title
     }, function (data) {
         $("#webIframe_" + tab_id).attr('srcdoc', data.result);
     });
     return false;
+	
+	*/
 }
 
 
