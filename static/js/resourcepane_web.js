@@ -82,6 +82,9 @@ function web_search(tab_id, title) {
 function page_redirection(tab_id) {
     //this script will get the href of a selected element and check to see if it is redirectable, if so, a request is sent to FLASK and a web page is returned
     
+    var selected_iframe = document.getElementById("webIframe_" + tab_id);
+    var testDoc = selected_iframe.contentDocument || selected_iframe.contentWindow.document;
+
     
     
     //set_web_resource_address(tab_id, title)
@@ -92,7 +95,7 @@ function page_redirection(tab_id) {
 
 function new_atom_web_resource_button() {
 
-    set_iframe_focus("webIframe_" + tab_id);
+    set_iframe_focus("webIframe_"+tab_id);
 
     if (focused != null || focused != undefined) {
         if (focused.id == "webIframe_" + tab_id) {

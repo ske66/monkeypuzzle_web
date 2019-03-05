@@ -1,44 +1,32 @@
 <html>
     
     <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <button id="coolButton" href="sdfgsdgsfd">Jhjkashfjka</button>
+    <button id="coolButton" href="sdfgsdgsfd">Run</button>
 
-    <iframe id="iframe1" srcdoc="<h1 id='title1'>hello world</h1>
+    <iframe id="iframe1" srcdoc="<head></head><body>
+                                 
+                                 <h1 id='title1'>hello world</h1>
             <button id='btn1'>Click Me</button>
             <p id='text1'>jafhakdjshf</p>
             <button id='btn2'>Click Me</button>
-            <button id='btn3'>Click Me</button>">
+                                 <button id='btn3'>Click Me</button> </body>">
         </iframe>
 
     <p>Selected item ID</p>
 
-    
-    
-    
-    <script>    
-$(document).ready(function(){
-    console.log($("#iframe1").contents().find("#btn1"));
-    
-});
-       
-/*        
-$("button").click(function() {
-    
-    //console.log(this.id); // or alert($(this).attr('id'));
-    var href = $(this).attr('href');
-    console.log(href);
-});
-
-   $('#iframe1').contents().find('#button').trigger( "click" );
 
 
 
-*/
+    <script>
+        var iframe_window = document.getElementById("iframe1");
+        var doc_window = iframe_window.contentDocument || iframe_window.contentWindow.document;
+
+        console.log(doc_window);
     </script>
 
 

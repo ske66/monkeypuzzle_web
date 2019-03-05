@@ -16,9 +16,6 @@ app.secret_key = 'some secret key'
 SCOPES = ['https://www.googleapis.com/auth/drive']
 CLIENT_SECRET_FILE = 'client_secret.json'
 
-#reddit = praw.Reddit(client_id='T1HvLzIfJ2WGOA', client_secret='hLnHHaSwXWRwEiXoJVXfRMedh7g', username='MonkeyPuzzle_web', password='Woodcot1', user_agent='MonkeyPuzzlePrawv1')
-
-
 @app.route('/')
 def start():
 
