@@ -1,0 +1,102 @@
+{
+  "analyst_email": "Default Analyst Email",
+  "analyst_name": "Default Analyst Email",
+  "created": "2019-02-27T10:41:13",
+  "edges": [
+    {
+      "id": "42c69ebd-2f18-436f-9a4c-9de07c51733c",
+      "source_id": "3161d127-7c3d-4a87-b0af-22cfadb2697b",
+      "target_id": "d3dba6bd-294d-4398-a7ef-7cd175e1b770"
+    },
+    {
+      "id": "516abe99-0092-41e3-87c9-1f7028ab0477",
+      "source_id": "d3dba6bd-294d-4398-a7ef-7cd175e1b770",
+      "target_id": "a6806869-f700-4b9d-8c22-0bbe50f7e97b"
+    },
+    {
+      "id": "bfe289a6-919e-4dd6-8f4d-9cda42605e00",
+      "source_id": "a6806869-f700-4b9d-8c22-0bbe50f7e97b",
+      "target_id": "dbb3e446-7b4d-4fa1-af66-4a5adb97f1a6"
+    },
+    {
+      "id": "24d5bf6f-ce0e-4b56-8281-a1c28368c292",
+      "source_id": "dbb3e446-7b4d-4fa1-af66-4a5adb97f1a6",
+      "target_id": "4afd01cd-314f-4344-83a6-be0f8e471b22"
+    }
+  ],
+  "edited": "2019-03-05T14:34:34",
+  "id": "61dd68c8-0053-4ba3-aa61-b34793d37a33",
+  "metadata": {},
+  "nodes": [
+    {
+      "id": "a6806869-f700-4b9d-8c22-0bbe50f7e97b",
+      "type": "atom",
+      "text": "5hrthr5t",
+      "sources": [
+        {
+          "resource_id": "324ad056-3168-4c55-a813-5651ef311c7f",
+          "text": "5hrthr5t",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "3161d127-7c3d-4a87-b0af-22cfadb2697b",
+      "type": "atom",
+      "text": "rthyrt5hrthr5thrw",
+      "sources": [
+        {
+          "resource_id": "324ad056-3168-4c55-a813-5651ef311c7f",
+          "text": "rthyrt5hrthr5thrw",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "d3dba6bd-294d-4398-a7ef-7cd175e1b770",
+      "type": "scheme",
+      "name": "Default Support"
+    },
+    {
+      "id": "4afd01cd-314f-4344-83a6-be0f8e471b22",
+      "type": "atom",
+      "text": "\nAdvertising ProgrammesBusiness SolutionsAbout Google",
+      "sources": [
+        {
+          "resource_id": "webIframe_fac24dfd-6d8e-4a9e-9e89-cce01977f6ba",
+          "text": "\nAdvertising ProgrammesBusiness SolutionsAbout Google",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "dbb3e446-7b4d-4fa1-af66-4a5adb97f1a6",
+      "type": "scheme",
+      "name": "Default Support"
+    }
+  ],
+  "resources": [
+    {
+      "id": "324ad056-3168-4c55-a813-5651ef311c7f",
+      "content": "rthyrt5hrthr5thrw",
+      "type": "text",
+      "metadata": {
+        "title": "dqwdwad"
+      }
+    },
+    {
+      "id": "fac24dfd-6d8e-4a9e-9e89-cce01977f6ba",
+      "content": " ",
+      "type": "web",
+      "metadata": {
+        "title": "www.google.com"
+      }
+    }
+  ]
+}

@@ -529,7 +529,6 @@ function get_selected_web_text() {
     var iwin = selected_iframe.contentWindow || selected_iframe.contentDocument.defaultView;
     if (iwin.getSelection().toString().length > 0) {
         if (selected_iframe.id == "webIframe_" + tab_id) {
-            console.log(testDoc.);
             web_text = true;
             selected_text = iwin.getSelection().toString();
             clear_web_selection();

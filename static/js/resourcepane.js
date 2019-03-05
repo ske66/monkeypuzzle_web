@@ -15,8 +15,6 @@ function add_tab(load_id = null) {
         add_resource_metadata(tab_id, 'title', '');
         localStorage.setItem("state", JSON.stringify(get_sd()));
         
-        console.log(new_resource);
-
         if (new_resource.type === "text") {
             add_text_resource_body(tab_id);
         }

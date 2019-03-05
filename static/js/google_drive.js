@@ -53,7 +53,6 @@ function onPickerApiLoad() {
 function handleAuthResult(authResult) {
     if (authResult && !authResult.error) {
         oauthToken = authResult.access_token;
-        console.log(oauthToken);
         
         if (type == "upload")
             {
@@ -69,9 +68,7 @@ function handleAuthResult(authResult) {
 
 // Create and render a Picker object for searching images.
 function createDownloadPicker() {
-    
-    console.log("download");
-    
+        
     if (pickerApiLoaded && oauthToken) {
         var view = new google.picker.View(google.picker.ViewId.DOCS);
         view.setMimeTypes("application/json");
@@ -90,9 +87,7 @@ function createDownloadPicker() {
 }
 
 function createUploadPicker() {
-    
-    console.log("upload");
-    
+        
     if (pickerApiLoaded && oauthToken) {
         var docsView = new google.picker.DocsView(google.picker.ViewId.FOLDERS)
         .setIncludeFolders(true)
@@ -139,26 +134,28 @@ function uploadPickerCallback(data){
 // A simple callback implementation.
 function downloadPickerCallback(data) {
 
-    var googleSelectedFiles = new Array();
-
     if (data.action == google.picker.Action.PICKED) {
 
-        var fileId = data.docs[0].id;
-
-        $.getJSON({
-            url: '/drive_download',
-            data: {
-                fileID: fileId, authToken: oauthToken
-            },
-            success: function (data) {
-
-                loadJSON(data);
-                var json = JSON.parse(data);
-                remove_all_tabs();
-                loadTabs(json.resources);
-
-
-            }
-        });
+        var fileId = data.docs[0].id;		
+		
+		$.ajax({
+			type: "GET",
+			beforeSend: function(request) {
+				request.setRequestHeader("Authorization", "Bearer " + oauthToken);
+			},
+			url: "https://www.googleapis.com/drive/v3/files/"+ fileId +"?alt=media",
+			mimeType: 'application/json',
+			processData: true,
+			success: function(data) {
+				data = JSON.stringify(data);
+				loadJSON(data)
+				var json = JSON.parse(data);
+				remove_all_tabs();
+				loadTabs(json.resources);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log('Error: ' + errorThrown + ' / ' + textStatus) + console.log(jqXHR);
+			}
+		});
     }
 }

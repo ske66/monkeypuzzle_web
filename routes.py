@@ -1,6 +1,8 @@
 from __future__ import print_function
 from flask import Flask, render_template, jsonify, request
-import sys, requests, mimetypes
+import sys
+import requests
+import mimetypes
 import pickle
 import io
 import os.path
@@ -47,17 +49,19 @@ def proxy():
 
     #this is required because the default user-agent will result in the reddit blocking the connection.
     headers = {'User-Agent': 'MonkeyPuzzle_Web_v1'}
-    
+	
     try:
         address = request.args.get("txtAddress")
         new_address = address.replace('www.', 'https://', 1)
-        
         resp = requests.get(new_address, headers=headers)
-
+        
+        test1 = resp.txt
+        
+        test = test1.count("http:localhost:8000")
+        
+        print(test, file=sys.stderr)
+				
         return jsonify(result=resp.text)
-
-        #this needs to be improved before testing
- 
 
     except Exception as e:
         return(str(e))
