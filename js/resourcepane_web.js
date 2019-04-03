@@ -70,30 +70,22 @@ function change_address(tab_id) {
 
 function web_search(tab_id, title) {
     
+
     $.ajax({
-        url: 'http://localhost:8000/api/v1/proxy?address=' + title,   //this will work if the napier server can be used
         type: 'GET',
+        url: 'http://176.58.103.74/api/v1/proxy',   //this will work if the napier server can be used
+        data:{'address' : title},
+        crossDomain: true,
+        contentType: 'application/json; charset=utf-8',
         success: function(data) {
             $("#webIframe_" + tab_id).attr('srcdoc', data.result); 
-            print(data);
+            console.log(data);
         }
     });
+    
+    
 
 }
-
-
-
-function page_redirection(tab_id) {
-    //this script will get the href of a selected element and check to see if it is redirectable, if so, a request is sent to FLASK and a web page is returned
-    
-    var selected_iframe = document.getElementById("webIframe_" + tab_id);
-    var testDoc = selected_iframe.contentDocument || selected_iframe.contentWindow.document;
-
-    
-    
-    //set_web_resource_address(tab_id, title)
-}
-
 
 
 
