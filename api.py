@@ -11,8 +11,9 @@ def api_id():
 
     headers = {'User-Agent': 'MonkeyPuzzle_Web_v1'}
 
-    address = request.args.get('address')
-    new_address = address.replace('www.', 'https://', 1)
-    resp = requests.get(new_address, headers=headers)
+if 'address' in request.args:
+        address = (request.args['address'])
+        new_address = address.replace('www.', 'https://', 1)
+        resp = requests.get(new_address, headers=headers)
 
-    return jsonify(result=resp.text)
+return jsonify(result=resp.text)

@@ -71,19 +71,22 @@ function change_address(tab_id) {
 function web_search(tab_id, title) {
     
 
-    $.ajax({
-        type: 'GET',
-        url: 'http://176.58.103.74/api/v1/proxy',   //this will work if the napier server can be used
-        data:{'address' : title},
-        crossDomain: true,
-        contentType: 'application/json; charset=utf-8',
-        success: function(data) {
-            $("#webIframe_" + tab_id).attr('srcdoc', data.result); 
-            console.log(data);
-        }
-    });
+//    $.ajax({
+//        type: 'GET',
+//        url: 'http://176.58.103.74/api/v1/proxy',   //this will work if the napier server can be used
+//        data:{'address' : title},
+//        crossDomain: true,
+//        contentType: 'application/json; charset=utf-8',
+//        success: function(data) {
+//            $("#webIframe_" + tab_id).attr('srcdoc', data.result); 
+//            console.log(data);
+//        }
+//    });
+//    
     
-    
+    	$.getJSON('http://176.58.103.74/api/v1/proxy?address=' + title, function(data){
+    $("#webIframe_" + tab_id).attr('srcdoc', data.result);
+  });
 
 }
 
